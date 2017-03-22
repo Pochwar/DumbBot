@@ -349,11 +349,12 @@ function checkWall4Move(id, top, left){
     if(id !== "player"){
         if((playerX1 === targetX1) && (playerX2 === targetX2) && (playerY1 === targetY1) && (playerY2 === targetY2)) {
             toggleEdit();
-            if (level[0].levelNumber === levels.length-1){alert("Well done !\n You won this game !")}
+            var firstTime = level[0] === undefined ? true : false;
+            if (!firstTime && level[0].levelNumber === levels.length-1){alert("Well done !\n You won this game !")}
             else {
                 var r = confirm("Well done !\n Try next level !");
                 if (r == true) {
-                    if(level[0] === undefined){levelToLoad = 0}
+                    if(firstTime){levelToLoad = 0}
                     else {levelToLoad = level[0].levelNumber+1}
 
                     loadLevel(levelToLoad);
