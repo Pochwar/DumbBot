@@ -17,24 +17,23 @@ document.querySelector('#save').addEventListener("click", saveLevel);
 
 //chargement du level 0
 document.querySelector('#load0').addEventListener("click", function () {
-    // console.log(elements);
     clearElements();
     elements = getStorage("elements");
     clearWalls();
     walls = getStorage("walls");
-    saveToStorage(baseElements, elements, "elements");
+    saveToStorage(lvlZeroWalls, walls, "walls");
+    saveToStorage(lvlZeroElements, elements, "elements");
     location.reload();
 });
 
 //chargement du level 1
 document.querySelector('#load1').addEventListener("click", function () {
-    // console.log(elements);
     clearElements();
     elements = getStorage("elements");
     clearWalls();
     walls = getStorage("walls");
     saveToStorage(lvlOneWalls, walls, "walls");
-    saveToStorage(lvl1Elements, elements, "elements");
+    saveToStorage(lvlOneElements, elements, "elements");
     location.reload();
 });
 
