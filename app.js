@@ -30,3 +30,4 @@ if (elements.length === 0){
 
 buildFromStorage(walls);
 buildFromStorage(elements);
+console.log(level[0]);

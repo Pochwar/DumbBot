@@ -1,5 +1,6 @@
 var walls = getStorage("walls");
 var elements = getStorage("elements");
+var level = getStorage("level");
 
 ////UTILITIES
 
@@ -22,8 +23,8 @@ function createElement(type, id, top, left){
 }
 
 //supprimer elements player, target et bot
-function clearElements() {
-    localStorage.removeItem('elements');
+function clear(item) {
+    localStorage.removeItem(item);
 }
 
 //application de la taille des elements
@@ -106,6 +107,14 @@ function saveToStorage(sourceArray, targetArray, name){
     }
 }
 
+//stockage d'infos dans le localStorage
+function saveLevelToStorage(number){
+        var item = {levelNumber : number};
+        level.push(item);
+        localStorage.setItem("level", JSON.stringify(level));
+}
+
+
 //Créer les murs et les elements depuis le localStorage
 function buildFromStorage(array){
     if (array.length > 0){
@@ -120,7 +129,7 @@ function buildFromStorage(array){
 function elementObjectIndexByType(type) {
     for(var i = 0, len = elements.length; i < len; i++) {
         if (elements[i]["type"] === type){
-                return i;
+            return i;
         }
     }
     return -1;
@@ -166,12 +175,15 @@ function saveLevel(){
 
 //Charger le niveau
 function loadLevel(i){
-    clearElements();
+    clear("elements");
     elements = getStorage("elements");
-    clearWalls();
+    clear("walls");
     walls = getStorage("walls");
-    saveToStorage(wallsLvl[i], walls, "walls");
-    saveToStorage(elementsLvl[i], elements, "elements");
+    clear("level");
+    level = getStorage("level");
+    saveToStorage(levels[i].walls, walls, "walls");
+    saveToStorage(levels[i].elements, elements, "elements");
+    saveLevelToStorage(i, level, "level");
     location.reload();
 }
 
@@ -223,12 +235,6 @@ function drawWalls(event){
         getAction(event);
     }
 }
-
-//supprimer les murs
-function clearWalls() {
-    localStorage.removeItem('walls');
-}
-
 
 ////DEPLACEMENT
 
@@ -329,7 +335,13 @@ function checkWall4Move(id, top, left){
     if(id !== "player"){
         if((playerX1 === targetX1) && (playerX2 === targetX2) && (playerY1 === targetY1) && (playerY2 === targetY2)) {
             toggleEdit();
-            alert("Well done !\n Try next level !");
+            var r = confirm("Well done !\n Try next level !");
+            if (r == true) {
+                if(level[0] === undefined){levelToLoad = 0}
+                else {levelToLoad = level[0].levelNumber+1}
+
+                loadLevel(levelToLoad);
+            }
         }
     }
 };
