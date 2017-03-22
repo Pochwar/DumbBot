@@ -169,7 +169,7 @@ function saveLevel(){
     var textWalls = '[\n';
     for(var i = 0; i < walls.length; i++){
         var coma = i === walls.length-1 ? '' : ',';
-        textWalls += '{type:"'+walls[i]["type"]+'",id:'+walls[i]["id"]+',top:'+walls[i]["top"]+', left:'+walls[i]["left"]+'}' + coma;
+        textWalls += '{type:"'+walls[i]["type"]+'",id:'+walls[i]["id"]+',top:'+walls[i]["top"]+',left:'+walls[i]["left"]+'}' + coma;
     }
     textWalls += '\n];';
     //trick pour copier le texte dans le presse papier
