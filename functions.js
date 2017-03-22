@@ -164,7 +164,16 @@ function saveLevel(){
     alert("var elements = \n" + textElements + "\nvar walls = \n" + textWalls);
 }
 
-
+//Charger le niveau
+function loadLevel(i){
+    clearElements();
+    elements = getStorage("elements");
+    clearWalls();
+    walls = getStorage("walls");
+    saveToStorage(wallsLvl[i], walls, "walls");
+    saveToStorage(elementsLvl[i], elements, "elements");
+    location.reload();
+}
 
 ////MURS
 
