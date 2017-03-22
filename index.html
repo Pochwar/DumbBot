@@ -14,35 +14,42 @@
         <div class="options">
             <p class="info">Use arrows to move</p>
             <hr>
-            <p>EDITION</p>
+            <p>LEVELS</p>
+            <div id="gotolvl">
+                <!-- <p><a onclick="loadLevel(0)">Level 0</a></p>
+                <p><a onclick="loadLevel(1)">Level 1</a></p>
+                <p><a onclick="loadLevel(2)">Level 2</a></p> -->
+            </div>
+            <br/>
+            <p>LEVEL EDITOR</p>
             <p>Clic : Build walls</p>
             <p>Clic+Shift : Destroy walls</p>
             <p>Clic+Ctrl : Position Player</p>
             <p>Clic+Alt : Position DumbBot</p>
             <p>Clic+Ctrl+Alt : Position Target</p>
             <p><a id="clear">Clear Walls</a></p>
-            <p><a id="save">Save</a></p>
-            <br/>
-            <p>LEVELS</p>
-            <p><a onclick="loadLevel(0)">load Level 0</a></p>
-            <p><a onclick="loadLevel(1)">load Level 1</a></p>
+            <p><a id="save">Get level data</a></p>
+            <div id="copyTricks"></div>
+
         </div>
     </div>
     <section>
         <h1>DumbBot</h1>
         <p class="info">Move Player to make DumbBot reach Target</p>
-
+        <p id="levelNumber"></p>
         <div class="elements">
             <p class="info"><span class="playercircle"></span>&nbsp;Player</p>
             <p class="info"><span class="dumbbotcircle"></span>&nbsp;DumbBot</p>
             <p class="info"><span class="targetcircle"></span>&nbsp;Target</p>
         </div>
+
         <div class="content">
             <div class="area" id"area">
             </div>
         </div>
     </section>
     <noscript>Please enable JavaScript</noscript>
+    <script src="bootbox.min.js"></script>
     <script src="levels.js"></script>
     <script src="LevelClass.js"></script>
     <script src="config.js"></script>

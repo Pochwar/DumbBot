@@ -109,9 +109,9 @@ function saveToStorage(sourceArray, targetArray, name){
 
 //stockage d'infos dans le localStorage
 function saveLevelToStorage(number){
-        var item = {levelNumber : number};
-        level.push(item);
-        localStorage.setItem("level", JSON.stringify(level));
+    var item = {levelNumber : number};
+    level.push(item);
+    localStorage.setItem("level", JSON.stringify(level));
 }
 
 
@@ -159,19 +159,33 @@ function setPosition(event, element){
 //Sauvegarder le niveau
 function saveLevel(){
     elements = getStorage("elements");
-    var textElements = '[';
+    var textElements = '[\n';
     for(var i = 0; i < elements.length; i++){
-        textElements += '{type:"'+elements[i]["type"]+'",id:"'+elements[i]["id"]+'",top:'+elements[i]["top"]+',left:'+elements[i]["left"]+'}';
+        var coma = i === elements.length-1 ? '' : ',';
+        textElements += '{type:"'+elements[i]["type"]+'",id:"'+elements[i]["id"]+'",top:'+elements[i]["top"]+',left:'+elements[i]["left"]+'}' + coma + '\n';
     }
-    textElements += ']';
+    textElements += '];\n';
     walls = getStorage("walls");
-    var textWalls = '[';
+    var textWalls = '[\n';
     for(var i = 0; i < walls.length; i++){
-        textWalls += '{type:"'+walls[i]["type"]+'",id:'+walls[i]["id"]+',top:'+walls[i]["top"]+', left:'+walls[i]["left"]+'}';
+        var coma = i === walls.length-1 ? '' : ',';
+        textWalls += '{type:"'+walls[i]["type"]+'",id:'+walls[i]["id"]+',top:'+walls[i]["top"]+', left:'+walls[i]["left"]+'}' + coma;
     }
-    textWalls += ']';
-    alert("var elements = \n" + textElements + "\nvar walls = \n" + textWalls);
+    textWalls += '\n];';
+    //trick pour copier le texte dans le presse papier
+    //créer un textarea rendu invisible en css dans lequel n met le texte que l'on copie
+    var tricks = document.createElement('textarea');
+    tricks.value = "elementsLvl[X] = \n" + textElements + "\nwallsLvl[X] = \n" + textWalls;
+    document.querySelector("#copyTricks").appendChild(tricks);
+    tricks.select();
+    document.execCommand('copy');
+    alert("Level data copied to clipboard !\n If you're proud of your level, send it to contact@pochworld.com :)")
+    // console.log(tricks.value);
 }
+
+// function copyToClipboard(text) {
+//   window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+// }
 
 //Charger le niveau
 function loadLevel(i){
@@ -335,12 +349,15 @@ function checkWall4Move(id, top, left){
     if(id !== "player"){
         if((playerX1 === targetX1) && (playerX2 === targetX2) && (playerY1 === targetY1) && (playerY2 === targetY2)) {
             toggleEdit();
-            var r = confirm("Well done !\n Try next level !");
-            if (r == true) {
-                if(level[0] === undefined){levelToLoad = 0}
-                else {levelToLoad = level[0].levelNumber+1}
+            if (level[0].levelNumber === levels.length-1){alert("Well done !\n You won this game !")}
+            else {
+                var r = confirm("Well done !\n Try next level !");
+                if (r == true) {
+                    if(level[0] === undefined){levelToLoad = 0}
+                    else {levelToLoad = level[0].levelNumber+1}
 
-                loadLevel(levelToLoad);
+                    loadLevel(levelToLoad);
+                }
             }
         }
     }

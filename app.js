@@ -10,7 +10,7 @@ document.querySelector('.area').addEventListener("mouseup", function(e){
 document.querySelector('#edit').addEventListener("click", toggleEdit);
 
 //efface tous les murs
-document.querySelector('#clear').addEventListener("click", function () {clearWalls();location.reload();});
+document.querySelector('#clear').addEventListener("click", function () {clear("walls");location.reload();});
 
 //efface tous les murs
 document.querySelector('#save').addEventListener("click", saveLevel);
@@ -28,6 +28,10 @@ if (elements.length === 0){
     location.reload();
 }
 
+//affiche le numéro du level en cours
+var lvlnum = level[0] === undefined ? 'hit "Play" button to begin' : "= Level " + level[0].levelNumber + " =";
+document.querySelector("#levelNumber").innerText = lvlnum;
+
+console.log(levels.length);
 buildFromStorage(walls);
 buildFromStorage(elements);
-console.log(level[0]);

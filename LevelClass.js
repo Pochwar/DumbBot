@@ -4,6 +4,21 @@ function Level(number){
     this.walls = wallsLvl[number];
 }
 
+//génération automatique des Objets Level
 var levels = [];
-levels[0] = new Level(0);
-levels[1] = new Level(1);
+elementsLvl.forEach(function(val,i){
+    levels[i] = new Level(i);
+
+    //génération du html
+    var a = document.createElement('a');
+    a.innerText = "Level " + i;
+    a.id = "lvl" + i;
+    var p = document.createElement('p');
+    p.appendChild(a);
+    document.querySelector("#gotolvl").appendChild(p);
+    //application du eventlistener
+    document.querySelector("#lvl" + i).addEventListener("click", function(){
+        // console.log(i);
+        loadLevel(i);
+    });
+});
