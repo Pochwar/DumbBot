@@ -34,21 +34,44 @@ function elementSize(id){
     item.style.height = elementsSize + "px";
 }
 
-//Mode EDIT + PLAY
-var edit = true;
+//PLAY
+var play = false;
 var interval = false
-document.querySelector('.buttons .options').style.visibility = "visible";
+document.querySelector('#pause').style.visibility = "hidden";
+document.querySelector('.infos').style.visibility = "visible";
+function togglePlay(){
+    if (!play){
+        play = true;
+        interval = setInterval(moveBot,100);
+        document.querySelector('#play').style.visibility = "hidden";
+        document.querySelector('#pause').style.visibility = "visible";
+        document.querySelector('.infos').style.visibility = "hidden";
+    } else {
+        clearInterval(interval);
+        document.querySelector('#play').style.visibility = "visible";
+        document.querySelector('#pause').style.visibility = "hidden";
+        document.querySelector('.infos').style.visibility = "visible";
+        play = false;
+    }
+
+}
+
+//Mode EDIT
+var edit = false;
+document.querySelector('#editor').style.visibility = "hidden";
+document.querySelector('#infoMove').innerText = "Use arrows to move.";
 function toggleEdit(){
     if (!edit){
         edit = true;
-        clearInterval(interval);
-        document.querySelector('#edit').innerText = "PLAY";
-        document.querySelector('.buttons .options').style.visibility = "visible";
+        document.querySelector('#play').style.visibility = "hidden";
+        document.querySelector('#editor').style.visibility = "visible";
+        document.querySelector('#infoMove').innerText = "Edition mode.";
     } else {
-        document.querySelector('#edit').innerText = "PAUSE";
-        document.querySelector('.buttons .options').style.visibility = "hidden";
+        document.querySelector('#play').style.visibility = "visible";
+        document.querySelector('#editor').style.visibility = "hidden";
+        document.querySelector('#infoMove').innerText = "Use arrows to move.";
         edit = false;
-        interval = setInterval(moveBot,100);
+
     }
 
 }
@@ -348,7 +371,7 @@ function checkWall4Move(id, top, left){
     var targetY2 = targetY1 + elementsSize;
     if(id !== "player"){
         if((playerX1 === targetX1) && (playerX2 === targetX2) && (playerY1 === targetY1) && (playerY2 === targetY2)) {
-            toggleEdit();
+            togglePlay();
             var firstTime = level[0] === undefined ? true : false;
             if (!firstTime && level[0].levelNumber === levels.length-1){alert("Well done !\n You won this game !")}
             else {
@@ -366,7 +389,7 @@ function checkWall4Move(id, top, left){
 
 //function de déplacement
 function move(id, direction, distance){
-    if(!edit){
+    if(play){
         var moveOk = true;
         switch (direction){
             case "top" :

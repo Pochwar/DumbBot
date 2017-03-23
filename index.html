@@ -9,42 +9,44 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="buttons">
-        <button id="edit">PLAY</button><br/>
+    <div class="infos">
+
         <div class="options">
-            <p class="info">Use arrows to move</p>
-            <hr>
-            <p>LEVELS</p>
-            <div id="gotolvl">
-                <!-- <p><a onclick="loadLevel(0)">Level 0</a></p>
-                <p><a onclick="loadLevel(1)">Level 1</a></p>
-                <p><a onclick="loadLevel(2)">Level 2</a></p> -->
+            <div id="infogame">
+                <p>DumbBot is a little game I made while learning JavaScript. It's full of <span>bugs</span> funny features like random teleportation and more !</p>
+                <p>The code is available on <a href="https://github.com/Pochwar/DumbBot">GitHub</a>. Feel free  to make any comment or suggestion : contact@pochworld.com</p>
             </div>
-            <br/>
-            <p>LEVEL EDITOR</p>
-            <p>Clic : Build walls</p>
-            <p>Clic+Shift : Destroy walls</p>
-            <p>Clic+Ctrl : Position Player</p>
-            <p>Clic+Alt : Position DumbBot</p>
-            <p>Clic+Ctrl+Alt : Position Target</p>
-            <p><a id="clear">Clear Walls</a></p>
-            <p><a id="save">Get level data</a></p>
-            <div id="copyTricks"></div>
+            <hr>
+            <button id="edit">Level Editor</button><br/><br/>
+            <div id="editor">
+                <p>Click : Build walls</p>
+                <p>Click+Shift : Destroy walls</p>
+                <p>Click+Ctrl : Position Player</p>
+                <p>Click+Alt : Position DumbBot</p>
+                <p>Click+Ctrl+Alt : Position Target</p>
+                <p><a id="clear">Clear Walls</a></p>
+                <p><a id="save">Get level data</a></p>
+                <div id="copyTricks"></div>
+                <hr>
+                <p>LEVELS</p>
+                <div id="gotolvl"></div>
+            </div>
 
         </div>
     </div>
     <section>
         <h1>DumbBot</h1>
-        <p class="info">Move Player to make DumbBot reach Target</p>
+        <p class="info">Move Player to make DumbBot reach Target.</p>
         <p id="levelNumber"></p>
-        <div class="elements">
-            <p class="info"><span class="playercircle"></span>&nbsp;Player</p>
-            <p class="info"><span class="dumbbotcircle"></span>&nbsp;DumbBot</p>
-            <p class="info"><span class="targetcircle"></span>&nbsp;Target</p>
-        </div>
-
+        <p id="infoMove"></p>
         <div class="content">
-            <div class="area" id"area">
+            <button id="play">PLAY !</button>
+            <button id="pause">Pause</button>
+            <div class="area" id"area"></div>
+            <div class="elements">
+                <p class="info"><span class="playercircle"></span>&nbsp;Player</p>
+                <p class="info"><span class="dumbbotcircle"></span>&nbsp;DumbBot</p>
+                <p class="info"><span class="targetcircle"></span>&nbsp;Target</p>
             </div>
         </div>
     </section>

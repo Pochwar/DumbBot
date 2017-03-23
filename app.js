@@ -7,6 +7,10 @@ document.querySelector('.area').addEventListener("mouseup", function(e){
 });
 
 //passe en mode édition
+document.querySelector('#play').addEventListener("click", togglePlay);
+//passe en mode édition
+document.querySelector('#pause').addEventListener("click", togglePlay);
+//passe en mode édition
 document.querySelector('#edit').addEventListener("click", toggleEdit);
 
 //efface tous les murs

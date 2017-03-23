@@ -8,23 +8,73 @@ h1{
     font-size: 30px;
 }
 
-.info{
+.info, #infoMove, #infogame{
     margin: 0;
     color: #fff;
     position : relative;
 }
 
-section{
+#infogame span{
+text-decoration: line-through;
+}
+
+
+section {
     display: flex;
     align-items: center;
     flex-direction: column;
-
 }
+
+.content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
 .elements{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
     width: 250px;
+}
+
+#play {
+    position: absolute;
+    top: 180px;
+    left:300px;
+    z-index: 1;
+    color: #ffeb36;
+    font-size: 45px;
+    border-radius: 7px;
+    background: #4972b0;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+#pause {
+    position: absolute;
+    z-index: 1;
+    color: #4972b0;
+    font-size: 20px;
+    border-radius: 6px;
+    background: #edf1c4
+    border: 1px solid black;
+    cursor: pointer;
+    top : -35px;
+    right: 15px;
+}
+
+#edit {
+    position: absolute;
+    z-index: 1;
+    color: #4972b0;
+    font-size: 15px;
+    border-radius: 6px;
+    background: #edf1c4
+    border: 1px solid black;
+    cursor: pointer;
+    margin-bottom: 5px;
 }
 
 .playercircle{
@@ -89,13 +139,14 @@ section{
     background-color: #3d2701;
 }
 
-.buttons{
+.infos{
     position : absolute;
     top : 10px;
     left : 10px;
+    width : 220px;
 }
 
-.buttons .options p{
+.infos .options p{
     color: #EAF6FD;
     margin:5px;
 }

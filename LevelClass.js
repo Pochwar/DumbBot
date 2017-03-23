@@ -11,7 +11,7 @@ elementsLvl.forEach(function(val,i){
 
     //génération du html
     var a = document.createElement('a');
-    a.innerText = "Level " + i;
+    a.innerText = "Load level " + i;
     a.id = "lvl" + i;
     var p = document.createElement('p');
     p.appendChild(a);
