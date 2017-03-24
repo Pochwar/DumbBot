@@ -14,7 +14,7 @@ document.querySelector('#pause').addEventListener("click", togglePlay);
 document.querySelector('#edit').addEventListener("click", toggleEdit);
 
 //efface tous les murs
-document.querySelector('#clear').addEventListener("click", function () {clear("walls");location.reload();});
+document.querySelector('#clear').addEventListener("click", function () {clear("walls");});
 
 //efface tous les murs
 document.querySelector('#save').addEventListener("click", saveLevel);

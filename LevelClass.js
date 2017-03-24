@@ -5,8 +5,11 @@ function Level(number){
 }
 
 //génération automatique des Objets Level
+
 var levels = [];
-elementsLvl.forEach(function(val,i){
+//alternate version to load levels only if they have been reach
+// for (var i = 0; i < level[0].levelNumber; i++){
+for (var i = 0; i < elementsLvl.length; i++){
     levels[i] = new Level(i);
 
     //génération du html
@@ -21,4 +24,4 @@ elementsLvl.forEach(function(val,i){
         // console.log(i);
         loadLevel(i);
     });
-});
+};

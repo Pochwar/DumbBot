@@ -17,6 +17,7 @@ function getStorage(item) {
 //création d'élements (player, walls, dumbBot, target)
 function createElement(type, id, top, left){
     var elements = document.querySelector(".area").innerHTML;
+
     elements += "<div class=\"" + type + "\" id=\"" + id + "\" style=\"top:" + top + "px; left:" + left + "px\"></div>";
     document.querySelector(".area").innerHTML = elements;
     elementSize(id)
@@ -24,7 +25,16 @@ function createElement(type, id, top, left){
 
 //supprimer elements player, target et bot
 function clear(item) {
-    localStorage.removeItem(item);
+localStorage.removeItem(item);
+location.reload();
+    // if(item === "walls"){
+    //     for (var i = 0; i < walls.length; ++i) {
+    //         console.log(walls[i].id);
+    //         deleteWall(walls[i].id);
+    //     }
+    // } else {
+    //     localStorage.removeItem(item);
+    // }
 }
 
 //application de la taille des elements
@@ -254,15 +264,22 @@ function createWall(event){
                 createElement ("wall", i, y, x);
             }
         } else {//delete walls !
-            var parent = document.querySelector('.area');
-            var id = wallObjectByTopLeft(y, x, "id");
-            var wallToDelete = document.getElementById(id);
-            parent.removeChild(wallToDelete);
-            walls.splice(wallObjectByTopLeft(y, x),1);
-            localStorage.setItem('walls', JSON.stringify(walls));
-
+            deleteWall(null, x, y);
         }
     }
+}
+
+
+// delete wall
+function deleteWall(id, x, y){
+    var parent = document.querySelector('.area');
+    var x = x || "";
+    var y = y || "";
+    var id = id === null ? wallObjectByTopLeft(y, x, "id") : id;
+    var wallToDelete = document.getElementById(id);
+    parent.removeChild(wallToDelete);
+    walls.splice(id,1);
+    localStorage.setItem('walls', JSON.stringify(walls));
 }
 
 //création des murs #2 en dessinant avec la souris
