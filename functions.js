@@ -34,19 +34,10 @@ function clear(item) {
         var parent = document.querySelector(".area");
         var allWalls = document.querySelectorAll(".wall");
         allWalls.forEach(function(val){
-            // y = val.style.top;
-            // x = val.style.left;
-            // y = y.replace("px", "");
-            // y = parseInt(y);
-            // x = x.replace("px", "");
-            // x = parseInt(x);
             var parent = document.querySelector('.area');
-            // var id = wallObjectByTopLeft(y, x, "id");
             var id = val.id;
             var wallToDelete = document.getElementById(id);
             parent.removeChild(wallToDelete);
-            // walls.splice(wallObjectByTopLeft(y, x),1);
-            // localStorage.setItem('walls', JSON.stringify(walls));
         })
     }
     if(item === "elements"){

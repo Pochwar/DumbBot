@@ -1,4 +1,2 @@
-changer class des éléments en "element"
-fnction clear(element) supprimer les class element
-changer dans createElementchanger les levels
-changer creation des levels
+affichage du niveau en cours
+gerer affichage des niveaux a charger que s'ils ont été validés
