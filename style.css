@@ -115,19 +115,19 @@ section {
     background-color: #1d8828;
 }
 
-.player{
+#player{
     position:absolute;
     background-color: #d08912;
     border-radius: 15px;
 }
 
-.dumbbot{
+#dumbbot{
     position:absolute;
     background-color: #630d0d;
     border-radius: 15px;
 }
 
-.target{
+#target{
     position:absolute;
     background-color: #000;
     border-radius: 15px;

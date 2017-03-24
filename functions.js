@@ -16,6 +16,7 @@ function getStorage(item) {
 
 //création d'élements (player, walls, dumbBot, target)
 function createElement(type, id, top, left){
+    console.log(id);
     var elements = document.querySelector(".area").innerHTML;
     elements += "<div class=\"" + type + "\" id=\"" + id + "\" style=\"top:" + top + "px; left:" + left + "px\"></div>";
     document.querySelector(".area").innerHTML = elements;
@@ -33,18 +34,29 @@ function clear(item) {
         var parent = document.querySelector(".area");
         var allWalls = document.querySelectorAll(".wall");
         allWalls.forEach(function(val){
-            y = val.style.top;
-            x = val.style.left;
-            y = y.replace("px", "");
-            y = parseInt(y);
-            x = x.replace("px", "");
-            x = parseInt(x);
+            // y = val.style.top;
+            // x = val.style.left;
+            // y = y.replace("px", "");
+            // y = parseInt(y);
+            // x = x.replace("px", "");
+            // x = parseInt(x);
             var parent = document.querySelector('.area');
-            var id = wallObjectByTopLeft(y, x, "id");
+            // var id = wallObjectByTopLeft(y, x, "id");
+            var id = val.id;
             var wallToDelete = document.getElementById(id);
             parent.removeChild(wallToDelete);
-            walls.splice(wallObjectByTopLeft(y, x),1);
-            localStorage.setItem('walls', JSON.stringify(walls));
+            // walls.splice(wallObjectByTopLeft(y, x),1);
+            // localStorage.setItem('walls', JSON.stringify(walls));
+        })
+    }
+    if(item === "elements"){
+        var parent = document.querySelector(".area");
+        var allElements = document.querySelectorAll(".element");
+        allElements.forEach(function(val){
+            var parent = document.querySelector('.area');
+            var id = val.id;
+            var wallToDelete = document.getElementById(id);
+            parent.removeChild(wallToDelete);
         })
     }
     localStorage.removeItem(item);
@@ -174,7 +186,7 @@ function buildFromStorage(array){
 //Récupérer l'id d'un element
 function elementObjectIndexByType(type) {
     for(var i = 0, len = elements.length; i < len; i++) {
-        if (elements[i]["type"] === type){
+        if (elements[i]["id"] === type){
             return i;
         }
     }
@@ -244,7 +256,8 @@ function loadLevel(i){
     saveToStorage(levels[i].walls, walls, "walls");
     saveToStorage(levels[i].elements, elements, "elements");
     saveLevelToStorage(i, level, "level");
-    location.reload();
+    buildFromStorage(walls);
+    buildFromStorage(elements);
 }
 
 ////MURS
@@ -364,9 +377,9 @@ function checkWall4Move(id, top, left){
 
     }
     //coordonnées du player
-    var selfX1 = document.querySelector(".player").offsetTop;
+    var selfX1 = document.querySelector("#player").offsetTop;
     var selfX2 = selfX1 + elementsSize;
-    var selfY1 = document.querySelector(".player").offsetLeft;
+    var selfY1 = document.querySelector("#player").offsetLeft;
     var selfY2 = selfY1 + elementsSize;
 
     //tableau d'enregistrement de collisions
@@ -388,9 +401,9 @@ function checkWall4Move(id, top, left){
     if (wallCollision.length > 0){return true;}
 
     //TARGET
-    var targetX1 = document.querySelector(".target").offsetTop;
+    var targetX1 = document.querySelector("#target").offsetTop;
     var targetX2 = targetX1 + elementsSize;
-    var targetY1 = document.querySelector(".target").offsetLeft;
+    var targetY1 = document.querySelector("#target").offsetLeft;
     var targetY2 = targetY1 + elementsSize;
     if(id !== "player"){
         if((playerX1 === targetX1) && (playerX2 === targetX2) && (playerY1 === targetY1) && (playerY2 === targetY2)) {

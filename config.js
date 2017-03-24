@@ -11,7 +11,7 @@ document.querySelector(".area").style.height = areaHeight + "px";
 
 //Positions de base des éléments
 var baseElements = [
-    {"type":"player","id":"player","top":105,"left":375},
-    {"type":"dumbbot","id":"dumbbot","top":105,"left":180},
-    {"type":"target","id":"target","top":240,"left":360}
+    {"type":"element","id":"player","top":105,"left":375},
+    {"type":"element","id":"dumbbot","top":105,"left":180},
+    {"type":"element","id":"target","top":240,"left":360}
 ]
