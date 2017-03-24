@@ -16,7 +16,6 @@ function getStorage(item) {
 
 //création d'élements (player, walls, dumbBot, target)
 function createElement(type, id, top, left){
-    console.log(id);
     var elements = document.querySelector(".area").innerHTML;
     elements += "<div class=\"" + type + "\" id=\"" + id + "\" style=\"top:" + top + "px; left:" + left + "px\"></div>";
     document.querySelector(".area").innerHTML = elements;
@@ -229,27 +228,31 @@ function saveLevel(){
     tricks.select();
     document.execCommand('copy');
     alert("Level data copied to clipboard !\n If you're proud of your level, send it to contact@pochworld.com :)")
-    // console.log(tricks.value);
 }
 
-// function copyToClipboard(text) {
-//   window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
-// }
 
 //Charger le niveau
 function loadLevel(i){
+    //on supprime les murs elements et level en cours du local storage et de l'area
     clear("elements");
     elements = getStorage("elements");
     clear("walls");
     walls = getStorage("walls");
     clear("level");
     level = getStorage("level");
+    //on en registre dans le local storage les infos du niveau suivant
     saveToStorage(levels[i].walls, walls, "walls");
     saveToStorage(levels[i].elements, elements, "elements");
     saveLevelToStorage(i, level, "level");
+    //on construit le niveau
     buildFromStorage(walls);
     buildFromStorage(elements);
+
+
 }
+
+
+
 
 ////MURS
 
@@ -408,6 +411,7 @@ function checkWall4Move(id, top, left){
                     else {levelToLoad = level[0].levelNumber+1}
 
                     loadLevel(levelToLoad);
+                    window.location.reload()
                 }
             }
         }

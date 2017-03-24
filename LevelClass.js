@@ -24,9 +24,16 @@ elementsLvl.forEach(function(val,i){
 });
 
 
-//alternate version to load levels only if they have been reach
+// alternate version to load levels only if they have been reach DONT FUCKING WORK !!!
 // var levels = [];
-// for (var i = 0; i < level[0].levelNumber; i++){
+// if(typeof level == "undefined"){
+//     console.log(typeof level);
+//     var lvlnum = 1;
+// } else {
+//     var lvlnum = level[0].levelNumber;
+// }
+// // var lvlnum = level[0] ? level[0].levelNumber : 0;
+// for (var i = 0; i < lvlnum; i++){
 //     levels[i] = new Level(i);
 //
 //     //génération du html

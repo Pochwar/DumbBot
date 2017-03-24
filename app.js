@@ -32,10 +32,11 @@ if (elements.length === 0){
     location.reload();
 }
 
+
+
 //affiche le numéro du level en cours
 var lvlnum = level[0] === undefined ? 'hit "Play" button to begin' : "= Level " + level[0].levelNumber + " =";
 document.querySelector("#levelNumber").innerText = lvlnum;
 
-console.log(levels.length);
 buildFromStorage(walls);
 buildFromStorage(elements);

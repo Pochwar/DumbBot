@@ -15,3 +15,9 @@ var baseElements = [
     {"type":"element","id":"dumbbot","top":105,"left":180},
     {"type":"element","id":"target","top":240,"left":360}
 ]
+
+
+//initialisation de level[]
+// var level = []
+// level.push(0);
+// console.log(level);
