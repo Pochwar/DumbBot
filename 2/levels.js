@@ -20,7 +20,8 @@ levelElements[1] =
     //player
     {class:"player",id:"player1",top:18,left:15},
     //bot
-    {class:"dumbbot",id:"dumbbot0",top:8,left:15},
+    {class:"dumbbot",id:"dumbbot0",top:9,left:15},
+    {class:"dumbbot",id:"dumbbot1",top:10,left:2},
     //target
     {class:"target",id:"target0",top:29,left:41},
     //walls

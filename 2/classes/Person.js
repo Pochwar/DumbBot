@@ -77,7 +77,6 @@ Person.prototype.move = function(direction, distance) {
         var wallLeft = removePxParseInt(wall.style.left);
         if (verifTop === wallTop && verifLeft === wallLeft){
             moveOk = false;
-            return;
         }
     });
 
@@ -98,6 +97,6 @@ Person.prototype.move = function(direction, distance) {
         coordToApply = coordToApply + "px";
         document.querySelector('#' + id).style[property] = coordToApply;
     }
-    // console.log(moveOk)
+    //console.log(moveOk)
     return moveOk;
 };

@@ -10,5 +10,5 @@ DumbBot.prototype.constructItem = function () {
 };
 
 DumbBot.prototype.move = function (direction, distance) {
-    Person.prototype.move.call(this, direction, distance);
+    return Person.prototype.move.call(this, direction, distance);
 };

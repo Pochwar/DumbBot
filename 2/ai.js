@@ -5,6 +5,7 @@ var goLeft = true;
 var goRight = true;
 function moveDumbBot(){
     dumbBot.forEach(function(dumbBot){
+        // console.log(dumbBot.move("bottom"))
         if(goRight){
             if(!dumbBot.move("right")){
                 goRight = false;
