@@ -114,7 +114,11 @@ Person.prototype.move = function(direction, distance) {
     //if target is reached
     if(targetReach){
         togglePlay();
-        if (currentLevel === levelElements.length-1){alert("Well done !\n You won this game !")}
+        if (currentLevel === levelElements.length-1){
+            localStorage.setItem("win", JSON.stringify("win"));
+            alert("Well done !\n You won this game !");
+            window.location.reload();
+        }
         else {
             var r = confirm("Well done !\n Try next level !");
             if (r === true) {

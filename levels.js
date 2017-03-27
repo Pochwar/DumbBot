@@ -53,11 +53,11 @@ wallsLvl[3] =
 elementsLvl[4] =
 [
 {type:"element",id:"target",top:45,left:615},
-{type:"dumbbot",id:"dumbbot",top:30,left:720},
-{type:"player",id:"player",top:60,left:615}
+{type:"element",id:"dumbbot",top:30,left:720},
+{type:"element",id:"player",top:60,left:615}
 ];
 
-wallsLvl[4] = 
+wallsLvl[4] =
 [
 {type:"wall",id:0,top:0,left:735},{type:"wall",id:1,top:15,left:720},{type:"wall",id:2,top:0,left:675},{type:"wall",id:3,top:15,left:660},{type:"wall",id:5,top:60,left:735},{type:"wall",id:6,top:45,left:675}
 ];

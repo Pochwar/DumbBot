@@ -10,20 +10,25 @@
 </head>
 <body>
     <div class="infos">
-
-        <div class="options">
             <div id="infogame">
                 <p>DumbBot is a little game I made while learning JavaScript. It's full of <span>bugs</span> funny features like random teleportation and more !</p>
                 <p>The code is available on <a href="https://github.com/Pochwar/DumbBot">GitHub</a>. Feel free  to make any comment or suggestion : contact@pochworld.com</p>
             </div>
+            <div id="wingame">
+                <p id="congrat">Well done, you finnish this game !</p>
+                <p>replay levels :</p>
+                <div id="levels"></div>
+            </div>
 
-        </div>
+
+
+
     </div>
     <section>
         <h1>DumbBot</h1>
         <p class="info">Move Player to make DumbBot reach Target.</p>
         <p id="levelNumber"></p>
-        <p id="infoMove"></p>
+        <p id="infoMove">Use arrows <span>&#8592;</span><span>&nbsp;&#8593;&nbsp;</span><span>&nbsp;&#8595;&nbsp;</span><span>&#8594;</span> to move.</p>
         <div class="content">
             <button id="play">PLAY !</button>
             <button id="pause">Pause</button>

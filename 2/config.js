@@ -1,9 +1,13 @@
 //size of elements
-var elementSize = 20;
+var elementSize = 15;
 
 //area size
 var areaCols = 50;
 var areaRows = 30;
+
+//play button width & height
+var btnPlayWidth = document.querySelector('#play').style.width = "152px";
+var btnPlayHeight = document.querySelector('#play').style.height = "62px";
 
 //array of items
 var items = [];

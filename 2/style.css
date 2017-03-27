@@ -14,8 +14,16 @@ h1{
     position : relative;
 }
 
+#infoMove span{
+    background: #fff;
+    color: #4972b0;
+    margin: 0 2px;
+    border-radius: 5px;
+    padding: 2px;
+}
+
 #infogame span{
-text-decoration: line-through;
+    text-decoration: line-through;
 }
 
 
@@ -41,8 +49,8 @@ section {
 
 #play {
     position: absolute;
-    top: 180px;
-    /*left:300px;*/
+    width: 152px;
+    height: 62px;
     z-index: 1;
     color: #ffeb36;
     font-size: 45px;
@@ -149,9 +157,19 @@ section {
     width : 220px;
 }
 
-.infos .options p{
+.infos p{
     color: #EAF6FD;
     margin:5px;
+}
+
+#wingame{
+    margin-top: 20px;
+}
+
+#congrat{
+    color: #ffeb36;
+font-weight: bold;
+font-size: 20px;
 }
 
 a {
