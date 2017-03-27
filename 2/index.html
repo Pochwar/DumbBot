@@ -16,21 +16,6 @@
                 <p>DumbBot is a little game I made while learning JavaScript. It's full of <span>bugs</span> funny features like random teleportation and more !</p>
                 <p>The code is available on <a href="https://github.com/Pochwar/DumbBot">GitHub</a>. Feel free  to make any comment or suggestion : contact@pochworld.com</p>
             </div>
-            <hr>
-            <button id="edit">Level Editor</button><br/><br/>
-            <div id="editor">
-                <p>Click : Build walls</p>
-                <p>Click+Shift : Destroy walls</p>
-                <p>Click+Ctrl : Position Player</p>
-                <p>Click+Alt : Position DumbBot</p>
-                <p>Click+Ctrl+Alt : Position Target</p>
-                <p><a id="clear">Clear Walls</a></p>
-                <p><a id="save">Get level data</a></p>
-                <div id="copyTricks"></div>
-                <hr>
-                <p>LEVELS</p>
-                <div id="gotolvl"></div>
-            </div>
 
         </div>
     </div>
@@ -42,8 +27,10 @@
         <div class="content">
             <button id="play">PLAY !</button>
             <button id="pause">Pause</button>
-            <div class="area" id="area"></div>
-            <div class="elements">
+            <div class="area" id="area">
+                <div type="element" class="player" id="player1" style="top: 50px; left: 410px; width: 10px; height: 10px;"></div>
+            </div>
+            <div class="elementsInfo">
                 <p class="info"><span class="playercircle"></span>&nbsp;Player</p>
                 <p class="info"><span class="dumbbotcircle"></span>&nbsp;DumbBot</p>
                 <p class="info"><span class="targetcircle"></span>&nbsp;Target</p>
@@ -51,10 +38,20 @@
         </div>
     </section>
     <noscript>Please enable JavaScript</noscript>
-    <script src="levels.js"></script>
-    <script src="LevelClass.js"></script>
-    <script src="config.js"></script>
-    <script src="functions.js"></script>
-    <script src="app.js"></script>
+    <div id="scripts">
+        <script src="functions.js"></script>
+        <script src="config.js"></script>
+        <script src="levels.js"></script>
+        <script src="classes/Items.js"></script>
+        <script src="classes/Person.js"></script>
+        <script src="classes/Player.js"></script>
+        <script src="classes/DumbBot.js"></script>
+        <script src="classes/Target.js"></script>
+        <script src="classes/Wall.js"></script>
+        <script src="classes/Level.js"></script>
+        <script src="classes/Grid.js"></script>
+        <script src="app.js"></script>
+        <script src="ai.js"></script>
+    </div>
 </body>
 </html>

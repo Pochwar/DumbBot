@@ -1,0 +1,172 @@
+body{
+    background: #4972b0;
+}
+
+h1{
+    color : #ffeb36;
+    margin:0;
+    font-size: 30px;
+}
+
+.info, #infoMove, #infogame{
+    margin: 0;
+    color: #fff;
+    position : relative;
+}
+
+#infogame span{
+text-decoration: line-through;
+}
+
+
+section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.elementsInfo{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 250px;
+}
+
+#play {
+    position: absolute;
+    top: 180px;
+    left:300px;
+    z-index: 1;
+    color: #ffeb36;
+    font-size: 45px;
+    border-radius: 7px;
+    background: #4972b0;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+#pause {
+    position: absolute;
+    z-index: 1;
+    color: #4972b0;
+    font-size: 20px;
+    border-radius: 6px;
+    background: #edf1c4
+    border: 1px solid black;
+    cursor: pointer;
+    top : -35px;
+    right: 15px;
+}
+
+#edit {
+    position: absolute;
+    z-index: 1;
+    color: #4972b0;
+    font-size: 15px;
+    border-radius: 6px;
+    background: #edf1c4
+    border: 1px solid black;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.playercircle{
+    position:absolute;
+    background-color: #d08912;
+    border-radius: 15px;
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    top: 5px;
+    left: -10px;
+}
+.dumbbotcircle{
+    position:absolute;
+    background-color: #630d0d;
+    border-radius: 15px;
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    top: 5px;
+    left: -10px;
+}
+.targetcircle{
+    position:absolute;
+    background-color: #000;
+    border-radius: 15px;
+    border : 1px solid #f00;
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    top: 5px;
+    left: -10px;
+}
+
+
+.area{
+    position: relative;
+    background-color: #1d8828;
+}
+
+.player{
+    position:absolute;
+    background-color: #d08912;
+    border-radius: 15px;
+}
+
+.dumbbot{
+    position:absolute;
+    background-color: #630d0d;
+    border-radius: 15px;
+}
+
+.target{
+    position:absolute;
+    background-color: #000;
+    border-radius: 15px;
+    border : 1px solid #f00;
+    box-sizing: border-box;
+}
+
+.wall{
+    position:absolute;
+    background-color: #3d2701;
+}
+
+.infos{
+    position : absolute;
+    top : 10px;
+    left : 10px;
+    width : 220px;
+}
+
+.infos .options p{
+    color: #EAF6FD;
+    margin:5px;
+}
+
+a {
+    color: #EAF6FD;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#levelNumber{
+    color: #edf1c4;
+    font-weight: bold;
+    font-size: 23px;
+    margin: 16px 0 5px;
+}
+
+#copyTricks{
+    position: absolute;
+    top: -1000px;
+    left: -1000px;
+}

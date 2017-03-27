@@ -6,9 +6,9 @@ document.querySelector('.area').addEventListener("mouseup", function(e){
     mouseIsDown = false;
 });
 
-//passe en mode édition
+//play
 document.querySelector('#play').addEventListener("click", togglePlay);
-//passe en mode édition
+//pause
 document.querySelector('#pause').addEventListener("click", togglePlay);
 //passe en mode édition
 document.querySelector('#edit').addEventListener("click", toggleEdit);
