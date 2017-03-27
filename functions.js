@@ -243,7 +243,7 @@ function loadLevel(i){
     //on en registre dans le local storage les infos du niveau suivant
     saveToStorage(levels[i].walls, walls, "walls");
     saveToStorage(levels[i].elements, elements, "elements");
-    saveLevelToStorage(i, level, "level");
+    saveLevelToStorage(i);
     //on construit le niveau
     buildFromStorage(walls);
     buildFromStorage(elements);
@@ -406,7 +406,7 @@ function checkWall4Move(id, top, left){
             if (!firstTime && level[0].levelNumber === levels.length-1){alert("Well done !\n You won this game !")}
             else {
                 var r = confirm("Well done !\n Try next level !");
-                if (r == true) {
+                if (r === true) {
                     if(firstTime){levelToLoad = 0}
                     else {levelToLoad = level[0].levelNumber+1}
 

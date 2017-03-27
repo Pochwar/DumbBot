@@ -2,23 +2,40 @@
 var area = new Grid("area", areaCols, areaRows);
 area.init();
 
-//load fisrt level
-var currentLevel = area.loadLevel(1);
+//load level
+var level = getFromStorage("level");
+console.log(level)
+//if first time, load level 0
+if (level.length === 0){
+    var currentLevel = area.loadLevel(0);
+}
+//else load last played level
+else {
+    var currentLevel = area.loadLevel(level[0].levelNumber);
+}
+//save current level to localStorage
+clearStorage("level");
+level = getFromStorage("level");
+saveLevelToStorage(currentLevel);
 
 //play
 document.querySelector('#play').addEventListener("click", togglePlay);
 //pause
 document.querySelector('#pause').addEventListener("click", togglePlay);
 
-//define players & dubBots
+//define players, dubBots & targets
 // var player0 = items[itemIndex("player0")];
 var player = [];
 var dumbBot = [];
+var target = [];
 levelElements[currentLevel].forEach(function(element){
     if (element.class === "player"){
         player.push(items[itemIndex(element.id)]);
     } else if (element.class === "dumbbot") {
         dumbBot.push(items[itemIndex(element.id)]);
+    }
+    else if (element.class === "target") {
+        target.push(items[itemIndex(element.id)]);
     }
 })
 

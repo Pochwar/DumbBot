@@ -1,5 +1,5 @@
 //size of elements
-var elementSize = 10;
+var elementSize = 20;
 
 //area size
 var areaCols = 50;
@@ -13,17 +13,19 @@ var map = {}; // You could also use an array
 onkeydown = onkeyup = function(e){
     e = e || event; // to deal with IE
     map[e.keyCode] = e.type == 'keydown';
-    // player 0
-    if(map[38]) {player[0].move("top");}
-    if(map[40]) {player[0].move("bottom");}
-    if(map[37]) {player[0].move("left");}
-    if(map[39]) {player[0].move("right");}
-    // player 1
-    if(map[90]) {player[1].move("top");}
-    if(map[83]) {player[1].move("bottom");}
-    if(map[81]) {player[1].move("left");}
-    if(map[68]) {player[1].move("right");}
-
+    //controls available if play is true
+    if(play){
+        // player 0
+        if(map[38]) {player[0].move("top");}
+        if(map[40]) {player[0].move("bottom");}
+        if(map[37]) {player[0].move("left");}
+        if(map[39]) {player[0].move("right");}
+        // player 1
+        if(map[90]) {player[1].move("top");}
+        if(map[83]) {player[1].move("bottom");}
+        if(map[81]) {player[1].move("left");}
+        if(map[68]) {player[1].move("right");}
+    }
 }
 
 //OLD VERSION

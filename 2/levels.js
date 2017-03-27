@@ -24,6 +24,7 @@ levelElements[1] =
     {class:"dumbbot",id:"dumbbot1",top:10,left:2},
     //target
     {class:"target",id:"target0",top:29,left:41},
+    {class:"target",id:"target1",top:8,left:23},
     //walls
     {class:"wall",id:"wall0",top:0,left:7},{class:"wall",id:"wall1",top:8,left:15}
 ];

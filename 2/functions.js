@@ -13,3 +13,25 @@ function removePxParseInt(variable){
     variable =  parseInt(variable);
     return variable;
 }
+
+//get data from localStorage
+function getFromStorage(item) {
+    var itemToGet = [];
+    var itemStorage = localStorage.getItem(item);
+    if (itemStorage !== null) {
+        itemToGet = JSON.parse(itemStorage);
+    }
+    return itemToGet;
+}
+
+//save current level to localStorage
+function saveLevelToStorage(number){
+        var item = {levelNumber : number};
+        level.push(item);
+        localStorage.setItem("level", JSON.stringify(level));
+}
+
+//Clear localStorage item
+function clearStorage(item) {
+    localStorage.removeItem(item);
+}

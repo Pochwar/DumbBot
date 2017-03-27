@@ -14,6 +14,7 @@ Person.prototype.move = function(direction, distance) {
     var distance = distance || elementSize;
     //set moveOk to true (useful for bot move)
     var moveOk = true;
+    var targetReach = false;
     //switch direction
     switch (direction){
         case "top" :
@@ -92,11 +93,39 @@ Person.prototype.move = function(direction, distance) {
         }
     });
 
+    //manage target reach
+    dumbBot.forEach(function(dumbBot){
+        if(id === dumbBot.id){
+            target.forEach(function(target){
+                if((verifTop === target.top) && (verifLeft === target.left)) {
+                    targetReach = true;
+                    return;
+                }
+            });
+        }
+    });
+
     //if moveOK remains true, apply movement
     if (moveOk){
         coordToApply = coordToApply + "px";
         document.querySelector('#' + id).style[property] = coordToApply;
     }
-    //console.log(moveOk)
+
+    //if target is reached
+    if(targetReach){
+        togglePlay();
+        if (currentLevel === levelElements.length-1){alert("Well done !\n You won this game !")}
+        else {
+            var r = confirm("Well done !\n Try next level !");
+            if (r === true) {
+                clearStorage("level");
+                level = getFromStorage("level");
+                saveLevelToStorage(currentLevel+1)
+                window.location.reload();
+            }
+        }
+    }
+
+
     return moveOk;
 };

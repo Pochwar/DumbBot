@@ -42,7 +42,7 @@ section {
 #play {
     position: absolute;
     top: 180px;
-    left:300px;
+    /*left:300px;*/
     z-index: 1;
     color: #ffeb36;
     font-size: 45px;
@@ -113,6 +113,7 @@ section {
 .area{
     position: relative;
     background-color: #1d8828;
+    z-index: -2;
 }
 
 .player{
@@ -133,6 +134,7 @@ section {
     border-radius: 15px;
     border : 1px solid #f00;
     box-sizing: border-box;
+    z-index: -1;
 }
 
 .wall{
