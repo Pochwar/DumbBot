@@ -18,9 +18,9 @@ levelElements[1] =
     //player
     {class:"player",id:"player0",top:8,left:30},
     //player
-    // {class:"player",id:"player1",top:18,left:15},
+    {class:"player",id:"player1",top:18,left:15},
     //bot
-    {class:"dumbbot",id:"dumbbot0",top:20,left:48},
+    {class:"dumbbot",id:"dumbbot0",top:8,left:15},
     //target
     {class:"target",id:"target0",top:29,left:41},
     //walls

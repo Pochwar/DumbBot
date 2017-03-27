@@ -61,6 +61,7 @@ Person.prototype.move = function(direction, distance) {
             moveOk = false;
         }
     }
+
     //prevent move if wall detected
     if (property === "top"){
         var verifTop = coordToApply;
@@ -70,9 +71,7 @@ Person.prototype.move = function(direction, distance) {
         var verifTop = parseInt(top.replace("px", ""));
         var verifLeft = coordToApply;
     }
-    // if (!checkWall4Move(id, verifTop, verifLeft)){
     var walls = document.querySelectorAll(".wall");
-
     walls.forEach(function(wall){
         var wallTop = removePxParseInt(wall.style.top);
         var wallLeft = removePxParseInt(wall.style.left);
@@ -81,6 +80,20 @@ Person.prototype.move = function(direction, distance) {
             return;
         }
     });
+
+    //manage collision between bot and players
+    player.forEach(function(player){
+        if(id !== player.id){
+            var playerTop = removePxParseInt(document.querySelector("#"+player.id).style.top);
+            var playerLeft = removePxParseInt(document.querySelector("#"+player.id).style.left);
+
+            if((verifTop === playerTop) && (verifLeft === playerLeft)) {
+                moveOk = false;
+            }
+        }
+    });
+
+    //if moveOK remains true, apply movement
     if (moveOk){
         coordToApply = coordToApply + "px";
         document.querySelector('#' + id).style[property] = coordToApply;
