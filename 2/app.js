@@ -8,15 +8,14 @@ var level = getFromStorage("level");
 //if first time, load level 0
 if (level.length === 0){
     var currentLevel = area.loadLevel(0);
+    //save level to localStorage
+    saveLevelToStorage(currentLevel);
 }
 //else load last played level
 else {
     var currentLevel = area.loadLevel(level[0].levelNumber);
 }
-//save current level to localStorage
-clearStorage("level");
-level = getFromStorage("level");
-saveLevelToStorage(currentLevel);
+
 
 //PLAY
 //init play button

@@ -16,7 +16,6 @@ Grid.prototype.init = function () {
 
 //Construct level into Grid
 Grid.prototype.loadLevel = function (levelId) {
-    console.log(levelId);
     // unload previous level
     var childs = this.grid.querySelectorAll("[type='element']");
     childs.forEach(function(child){
@@ -24,6 +23,7 @@ Grid.prototype.loadLevel = function (levelId) {
     }.bind(this));
     //load new level data into items[]
     new Level(levelId, this.grid);
+
 
 
     return levelId;

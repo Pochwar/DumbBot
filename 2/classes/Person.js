@@ -122,10 +122,8 @@ Person.prototype.move = function(direction, distance) {
         else {
             var r = confirm("Well done !\n Try next level !");
             if (r === true) {
-                clearStorage("level");
-                //trick to make clearStorage effective
-                level = getFromStorage("level");
                 saveLevelToStorage(currentLevel+1)
+                area.loadLevel(level[0].levelNumber);
                 window.location.reload();
             }
         }

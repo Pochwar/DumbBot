@@ -27,7 +27,7 @@ function getFromStorage(item) {
 //save current level to localStorage
 function saveLevelToStorage(number){
         var item = {levelNumber : number};
-        level.push(item);
+        level[0]=item;
         localStorage.setItem("level", JSON.stringify(level));
 }
 
