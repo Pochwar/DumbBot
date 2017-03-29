@@ -10,7 +10,10 @@ var btnPlayWidth = document.querySelector('#play').style.width = "152px";
 var btnPlayHeight = document.querySelector('#play').style.height = "62px";
 
 //array of items
-var items = [];
+var wall = [];
+var player = [];
+var dumbBot = [];
+var target = [];
 
 //players controls
 var map = {}; // You could also use an array

@@ -5,7 +5,6 @@ area.init();
 
 //LOAD LEVEL
 var level = getFromStorage("level");
-console.log(level)
 //if first time, load level 0
 if (level.length === 0){
     var currentLevel = area.loadLevel(0);
@@ -18,22 +17,6 @@ else {
 clearStorage("level");
 level = getFromStorage("level");
 saveLevelToStorage(currentLevel);
-
-
-//DEFINE PLAYERS, BOTS & TARGETS
-var player = [];
-var dumbBot = [];
-var target = [];
-levelElements[currentLevel].forEach(function(element){
-    if (element.class === "player"){
-        player.push(items[itemIndex(element.id)]);
-    } else if (element.class === "dumbbot") {
-        dumbBot.push(items[itemIndex(element.id)]);
-    }
-    else if (element.class === "target") {
-        target.push(items[itemIndex(element.id)]);
-    }
-})
 
 //PLAY
 //init play button

@@ -1,10 +1,54 @@
-function Level(id){
-    this.id = id;
-}
+function Level(id, parent){
+    init(id, parent);
 
-//init level
-Level.prototype.init = function () {
-    //load level data
-    var levelData = levelElements[this.id];
-    return levelData;
-};
+
+    //init level
+    function init(id, parent) {
+        //get level data and push them to items array of objects
+        levelElements[id].forEach(function(object){
+            pushItem(parent, object.class, object.id, object.top, object.left);
+        }.bind(this));
+
+        //Display items objects
+        player.forEach(function(object){
+            object.constructItem();
+        }.bind(this));
+        wall.forEach(function(object){
+            object.constructItem();
+        }.bind(this));
+        dumbBot.forEach(function(object){
+            object.constructItem();
+        }.bind(this));
+        target.forEach(function(object){
+            object.constructItem();
+        }.bind(this));
+        
+        //display current level
+        document.querySelector('#levelNumber').innerText = "= Level " + id + " =";
+    };
+
+    //Push Items into items[]
+    function pushItem(parent, className, id, top, left){
+        switch (className) {
+            case "player":
+            player.push(new Player(parent, id, top, left));
+            break;
+
+            case "dumbbot":
+            dumbBot.push(new DumbBot(parent, id, top, left));
+            break;
+
+            case "target":
+            target.push(new Target(parent, id, top, left));
+            break;
+
+            case "wall":
+            wall.push(new Wall(parent, id, top, left));
+            break;
+
+            default:
+            console.log("ERROR");
+        }
+    }
+
+}
