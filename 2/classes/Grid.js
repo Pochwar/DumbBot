@@ -4,15 +4,37 @@ function Grid(id, cols, rows){
     this.rows = rows;
     this.elementSize = elementSize;
     this.grid = document.querySelector("#"+this.id);
+    this.init();
 }
 
 //Init Grid
 Grid.prototype.init = function () {
+    //set heigth & width
     this.width = this.cols * this.elementSize + "px";
     this.height = this.rows * this.elementSize + "px";
     this.grid.style.width = this.width;
     this.grid.style.height = this.height;
+
+    //LOAD LEVEL
+    //Set localStorage level to level[]
+    var level = getFromStorage("level");
+    //if level[] is empty
+    if (level.length === 0){
+        //load level 0 and affect 0 to currentLevel
+        var currentLevel = this.loadLevel(0);
+        //save currentLevel to localStorage
+        saveLevelToStorage(currentLevel);
+        level = getFromStorage("level")
+    }
+    //else
+    else {
+        //load last played level and affect it to currentLevel
+        var currentLevel = this.loadLevel(level[0].levelNumber);
+    }
+
 };
+
+
 
 //Construct level into Grid
 Grid.prototype.loadLevel = function (levelId) {

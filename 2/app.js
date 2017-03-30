@@ -1,24 +1,5 @@
 //CREATE ARENA
 var area = new Grid("area", areaCols, areaRows);
-area.init();
-
-
-//LOAD LEVEL
-//Set localStorage level to level[]
-var level = getFromStorage("level");
-//if level[] is empty
-if (level.length === 0){
-    //load level 0 and affect 0 to currentLevel
-    var currentLevel = area.loadLevel(0);
-    //save currentLevel to localStorage
-    saveLevelToStorage(currentLevel);
-    level = getFromStorage("level")
-}
-//else
-else {
-    //load last played level and affect it to currentLevel
-    var currentLevel = area.loadLevel(level[0].levelNumber);
-}
 
 
 //PLAY
