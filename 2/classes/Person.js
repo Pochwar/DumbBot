@@ -126,7 +126,7 @@ Person.prototype.move = function(direction, distance) {
         //pause game
         togglePlay();
         //if currentLevel is last level
-        if (currentLevel === levelElements.length-1){
+        if (area.currentLevel === levelElements.length-1){
             //save win info to localStorage
             localStorage.setItem("win", JSON.stringify("win"));
             alert("Well done !\n You won this game !");
@@ -139,11 +139,11 @@ Person.prototype.move = function(direction, distance) {
             //if ok
             if (r === true) {
                 //increase currentLevel
-                currentLevel ++;
+                area.currentLevel ++;
                 //save it to LocalStorage
-                saveLevelToStorage(currentLevel);
+                saveLevelToStorage(area.currentLevel);
                 //load level
-                area.loadLevel(currentLevel);
+                area.loadLevel(area.currentLevel);
             }
         }
     }

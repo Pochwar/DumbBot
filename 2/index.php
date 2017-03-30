@@ -55,7 +55,7 @@
         <script src="classes/Wall.js"></script>
         <script src="classes/Level.js"></script>
         <script src="classes/Grid.js"></script>
-        <script src="app.js"></script>
+        <script src="appPlay.js"></script>
         <script src="ai.js"></script>
     </div>
 </body>

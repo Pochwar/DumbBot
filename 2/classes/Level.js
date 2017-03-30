@@ -2,6 +2,12 @@ function Level(id, parent){
     init(id, parent);
 
 
+    //Construct level into Grid
+    this.test = function() {
+        // unload previous level
+        console.log("coucouille")
+    };
+
     //init level
     function init(id, parent) {
         //clear previous items arrays
@@ -29,8 +35,6 @@ function Level(id, parent){
             object.constructItem();
         }.bind(this));
 
-        //display current level
-        document.querySelector('#levelNumber').innerText = "= Level " + id + " =";
     };
 
     //Push Items into items[]

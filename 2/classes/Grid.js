@@ -21,7 +21,7 @@ Grid.prototype.init = function () {
     //if level[] is empty
     if (level.length === 0){
         //load level 0 and affect 0 to currentLevel
-        var currentLevel = this.loadLevel(0);
+        this.currentLevel = this.loadLevel(0);
         //save currentLevel to localStorage
         saveLevelToStorage(currentLevel);
         level = getFromStorage("level")
@@ -29,7 +29,7 @@ Grid.prototype.init = function () {
     //else
     else {
         //load last played level and affect it to currentLevel
-        var currentLevel = this.loadLevel(level[0].levelNumber);
+        this.currentLevel = this.loadLevel(level[0].levelNumber);
     }
 
 };
@@ -44,30 +44,66 @@ Grid.prototype.loadLevel = function (levelId) {
         this.grid.removeChild(child);
     }.bind(this));
     //load new level data into items[]
-    new Level(levelId, this.grid);
+    this.levelLoaded = new Level(levelId, this.grid);
 
 
-
+    //display current level
+    document.querySelector('#levelNumber').innerText = "= Level " + levelId + " =";
     return levelId;
 };
 
 
+//get level data
+Grid.prototype.getLevelData = function () {
+    var elements = document.querySelectorAll("[type='element']");
+    var textElements = '[\n';
+    for(var i = 0; i < elements.length; i++){
+        var top = removePxParseInt(elements[i].style.top)/elementSize;
+        var left = removePxParseInt(elements[i].style.left)/elementSize;
+        var coma = i === elements.length-1 ? '' : ',';
+        textElements += '{class:"'+elements[i].className+'",id:"'+elements[i].id+'",top:'+top+',left:'+left+'}' + coma;
+    }
+    textElements += '\n];';
+    //trick pour copier le texte dans le presse papier
+    //créer un textarea rendu invisible en css dans lequel n met le texte que l'on copie
+    var tricks = document.createElement('textarea');
+    tricks.value = "levelElements[X] = \n" + textElements;
+    document.querySelector("#copyTricks").appendChild(tricks);
+    tricks.select();
+    document.execCommand('copy');
+    alert("Level data copied to clipboard !\n If you're proud of your level, send it to contact@pochworld.com :)")
+}
 
-//Display level list
-Grid.prototype.listLevels = function () {
-    //load level data
-    levelElements.forEach(function(level, i){
-        //generate html links
-        var a = document.createElement('a');
-        a.innerText = "Level " + i;
-        a.id = "lvl" + i;
-        var p = document.createElement('p');
-        p.appendChild(a);
-        document.querySelector("#levels").appendChild(p);
-        //application du eventlistener
-        document.querySelector("#lvl" + i).addEventListener("click", this.loadLevel.bind(this, i));
-    }.bind(this));
-};
+//coonstruct walls
+Grid.prototype.constructWall = function(event){
+    if(edit){
+        var mouse = getMouseCoord(event);
+        var x = mouse[0];
+        var y = mouse[1];
+        if (!event.shiftKey) {
+            var i = wall.length;
+            // if(!checkWall4Construct(y, x)){
+                // var wallItem = {type : "wall", id : i, top : y, left : x};
+                // //Enregistrement dans le localStorage
+                // walls.push(wallItem);
+                // localStorage.setItem('walls', JSON.stringify(walls));
+                //Création dans l'area
+                wall.push(new Wall(this.grid, "wall"+i, y, x));
+                wall[i].constructItem();
+                // Object { parent: <div#area.area>, id: "wall0", top: 180, left: 345, className: "wall" }
+                // createElement ("wall", i, y, x);
+            // }
+        } else {//delete walls !
+            var parent = document.querySelector('.area');
+            var id = wallObjectByTopLeft(y, x, "id");
+            var wallToDelete = document.getElementById(id);
+            parent.removeChild(wallToDelete);
+            walls.splice(wallObjectByTopLeft(y, x),1);
+            localStorage.setItem('walls', JSON.stringify(walls));
+
+        }
+    }
+}
 
 
 //Save Level to localStorage
