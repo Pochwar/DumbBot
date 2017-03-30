@@ -113,18 +113,27 @@ Person.prototype.move = function(direction, distance) {
 
     //if target is reached
     if(targetReach){
+        //pause game
         togglePlay();
+        //if currentLevel is last level
         if (currentLevel === levelElements.length-1){
+            //save win info to localStorage
             localStorage.setItem("win", JSON.stringify("win"));
             alert("Well done !\n You won this game !");
             window.location.reload();
         }
+        //else
         else {
+            //ask for loading next level
             var r = confirm("Well done !\n Try next level !");
+            //if ok
             if (r === true) {
-                saveLevelToStorage(currentLevel+1)
-                area.loadLevel(level[0].levelNumber);
-                window.location.reload();
+                //increase currentLevel
+                currentLevel ++;
+                //save it to LocalStorage
+                saveLevelToStorage(currentLevel);
+                //load level
+                area.loadLevel(currentLevel);
             }
         }
     }

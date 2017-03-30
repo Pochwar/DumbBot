@@ -4,15 +4,19 @@ area.init();
 
 
 //LOAD LEVEL
+//Set localStorage level to level[]
 var level = getFromStorage("level");
-//if first time, load level 0
+//if level[] is empty
 if (level.length === 0){
+    //load level 0 and affect 0 to currentLevel
     var currentLevel = area.loadLevel(0);
-    //save level to localStorage
+    //save currentLevel to localStorage
     saveLevelToStorage(currentLevel);
+    level = getFromStorage("level")
 }
-//else load last played level
+//else
 else {
+    //load last played level and affect it to currentLevel
     var currentLevel = area.loadLevel(level[0].levelNumber);
 }
 

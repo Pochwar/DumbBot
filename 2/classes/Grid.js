@@ -17,7 +17,7 @@ Grid.prototype.init = function () {
 //Construct level into Grid
 Grid.prototype.loadLevel = function (levelId) {
     // unload previous level
-    var childs = this.grid.querySelectorAll("[type='element']");
+    var childs = document.querySelectorAll("[type='element']");
     childs.forEach(function(child){
         this.grid.removeChild(child);
     }.bind(this));

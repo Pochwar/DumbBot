@@ -4,6 +4,12 @@ function Level(id, parent){
 
     //init level
     function init(id, parent) {
+        //clear previous items arrays
+        wall = [];
+        player = [];
+        dumbBot = [];
+        target = [];
+
         //get level data and push them to items array of objects
         levelElements[id].forEach(function(object){
             pushItem(parent, object.class, object.id, object.top, object.left);
@@ -22,7 +28,7 @@ function Level(id, parent){
         target.forEach(function(object){
             object.constructItem();
         }.bind(this));
-        
+
         //display current level
         document.querySelector('#levelNumber').innerText = "= Level " + id + " =";
     };
