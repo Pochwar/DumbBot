@@ -81,16 +81,26 @@ Person.prototype.move = function(direction, distance) {
         }
     });
 
-    //manage collision between bot and players
+    //manage collision between dumbBots and players
+    //prevent dumbBot move if player
     player.forEach(function(player){
-        if(id !== player.id){
+        // if(id !== player.id){
             var playerTop = removePxParseInt(document.querySelector("#"+player.id).style.top);
             var playerLeft = removePxParseInt(document.querySelector("#"+player.id).style.left);
 
             if((verifTop === playerTop) && (verifLeft === playerLeft)) {
                 moveOk = false;
             }
-        }
+        // }
+    });
+    //prevent player move if dumbBot
+    dumbBot.forEach(function(dumbBot){
+            var dumbBotTop = removePxParseInt(document.querySelector("#"+dumbBot.id).style.top);
+            var dumbBotLeft = removePxParseInt(document.querySelector("#"+dumbBot.id).style.left);
+
+            if((verifTop === dumbBotTop) && (verifLeft === dumbBotLeft)) {
+                moveOk = false;
+            }
     });
 
     //manage target reach
