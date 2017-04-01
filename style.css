@@ -14,10 +14,20 @@ h1{
     position : relative;
 }
 
-#infogame span{
-text-decoration: line-through;
+#infoMove span{
+    background: #fff;
+    color: #4972b0;
+    margin: 0 2px;
+    border-radius: 5px;
+    padding: 2px;
 }
 
+#infogame span{
+    text-decoration: line-through;
+}
+.bold{
+    font-weight: bold;
+}
 
 section {
     display: flex;
@@ -32,18 +42,23 @@ section {
     position: relative;
 }
 
-.elements{
+.elementsInfo{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
     width: 250px;
 }
 
+.infos #errors .error{
+    color:#f00;
+    font-weight: bold;
+}
+
 #play {
     position: absolute;
-    top: 180px;
-    left:300px;
-    z-index: 1;
+    width: 152px;
+    height: 62px;
+    z-index: 2;
     color: #ffeb36;
     font-size: 45px;
     border-radius: 7px;
@@ -54,11 +69,11 @@ section {
 
 #pause {
     position: absolute;
-    z-index: 1;
+    /*z-index: 1;*/
     color: #4972b0;
     font-size: 20px;
     border-radius: 6px;
-    background: #edf1c4
+    background-color: : #F0F0F0;
     border: 1px solid black;
     cursor: pointer;
     top : -35px;
@@ -67,7 +82,7 @@ section {
 
 #edit {
     position: absolute;
-    z-index: 1;
+    /*z-index: 1;*/
     color: #4972b0;
     font-size: 15px;
     border-radius: 6px;
@@ -115,23 +130,27 @@ section {
     background-color: #1d8828;
 }
 
-#player{
+.player{
     position:absolute;
     background-color: #d08912;
     border-radius: 15px;
+    z-index: 1;
 }
 
-#dumbbot{
+.dumbbot{
     position:absolute;
     background-color: #630d0d;
     border-radius: 15px;
+    z-index: 1;
 }
 
-#target{
+.target{
     position:absolute;
     background-color: #000;
     border-radius: 15px;
     border : 1px solid #f00;
+    box-sizing: border-box;
+    z-index: 1;
 }
 
 .wall{
@@ -146,9 +165,19 @@ section {
     width : 220px;
 }
 
-.infos .options p{
+.infos p{
     color: #EAF6FD;
     margin:5px;
+}
+
+#wingame{
+    margin-top: 20px;
+}
+
+#congrat{
+    color: #ffeb36;
+font-weight: bold;
+font-size: 20px;
 }
 
 a {

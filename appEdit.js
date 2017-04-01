@@ -1,6 +1,8 @@
 //CREATE ARENA
 var area = new Grid("area", areaCols, areaRows);
 
+//edition mode
+var editionMode = true;
 
 //PLAY
 //init play button
@@ -30,18 +32,42 @@ function togglePlay(){
 }
 
 //list levels to load
-// listLevels();
+listLevels();
+
+//clear level
+document.querySelector('#clear').addEventListener("click", clearLevel);
 
 //get level data
 document.querySelector('#save').addEventListener("click", area.getLevelData);
 
+//disable contextmenu on area right click
+area.grid.oncontextmenu = function() {return false;};
+
 
 //edit
-// document.querySelector('#clear').addEventListener("click", listLevels);
-document.querySelector('.content').addEventListener("click", function(event){
+area.grid.onmousedown = function(event){
     if (!event){
-           event = window.event;
-       }
-    area.constructWall(event);
+        event = window.event;
+    }
+    area.actionRouter(event);
+};
 
+
+//détecte si la souris clique ou pas
+var mouseIsDown = false;
+area.grid.addEventListener("mousedown", function(){
+    mouseIsDown = true;
+});
+area.grid.addEventListener("mouseup", function(){
+    mouseIsDown = false;
+});
+
+//detect mouse move
+area.grid.addEventListener("mousemove", function(event){
+    if (!event){
+        event = window.event;
+    }
+    if (mouseIsDown){
+        area.actionRouter(event);
+    }
 });

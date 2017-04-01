@@ -1,23 +1,62 @@
-//size of elements (minimum : 10)
-var elementsSize = 15;
+//size of elements
+var elementSize = 15;
 
-//creation de la zone
-var cols = 50;
-var rows = 30;
-var areaWidth = cols*elementsSize;
-var areaHeight = rows*elementsSize;
-document.querySelector(".area").style.width = areaWidth + "px";
-document.querySelector(".area").style.height = areaHeight + "px";
+//area size
+var areaCols = 50;
+var areaRows = 30;
 
-//Positions de base des éléments
-var baseElements = [
-    {"type":"element","id":"player","top":105,"left":375},
-    {"type":"element","id":"dumbbot","top":105,"left":180},
-    {"type":"element","id":"target","top":240,"left":360}
-]
+//play button width & height
+var btnPlayWidth = document.querySelector('#play').style.width = "152px";
+var btnPlayHeight = document.querySelector('#play').style.height = "62px";
 
+//array of items
+var wall = [];
+var player = [];
+var dumbBot = [];
+var target = [];
 
-//initialisation de level[]
-// var level = []
-// level.push(0);
-// console.log(level);
+//max item
+var nbPlayerMax = 2;
+var nbDumbBotMax = 4;
+var nbTargetMax = 4;
+
+//players controls
+var map = {}; // You could also use an array
+onkeydown = onkeyup = function(e){
+    e = e || event; // to deal with IE
+    map[e.keyCode] = e.type == 'keydown';
+    //controls available if play is true
+    if(play){
+        // player 0
+        if(map[38]) {player[0].move("top");}
+        if(map[40]) {player[0].move("bottom");}
+        if(map[37]) {player[0].move("left");}
+        if(map[39]) {player[0].move("right");}
+        // player 1
+        if(map[90]) {player[1].move("top");}
+        if(map[83]) {player[1].move("bottom");}
+        if(map[81]) {player[1].move("left");}
+        if(map[68]) {player[1].move("right");}
+    }
+}
+
+//OLD VERSION
+//define player0 controls
+// function movePlayer(e, i, dir) {
+//     //top
+//     if (e.keyCode == up) {player[i].move("top");}
+//     //bottom
+//     if (e.keyCode == down) {player[i].move("bottom");}
+//     //left
+//     if (e.keyCode == left) {player[i].move("left");}
+//     //right
+//     if (e.keyCode == right) {player[i].move("right");}
+// }
+// init movePlayer0()
+// document.querySelector('body').addEventListener("keydown", function(event){
+//     if (!event){
+//         event = window.event;
+//     }
+//     movePlayer(event, 0, 38, 40, 37, 39);
+//     movePlayer(event, 1, 90, 83, 81, 68);
+// });

@@ -85,22 +85,22 @@ Person.prototype.move = function(direction, distance) {
     //prevent dumbBot move if player
     player.forEach(function(player){
         // if(id !== player.id){
-            var playerTop = removePxParseInt(document.querySelector("#"+player.id).style.top);
-            var playerLeft = removePxParseInt(document.querySelector("#"+player.id).style.left);
+        var playerTop = removePxParseInt(document.querySelector("#"+player.id).style.top);
+        var playerLeft = removePxParseInt(document.querySelector("#"+player.id).style.left);
 
-            if((verifTop === playerTop) && (verifLeft === playerLeft)) {
-                moveOk = false;
-            }
+        if((verifTop === playerTop) && (verifLeft === playerLeft)) {
+            moveOk = false;
+        }
         // }
     });
     //prevent player move if dumbBot
     dumbBot.forEach(function(dumbBot){
-            var dumbBotTop = removePxParseInt(document.querySelector("#"+dumbBot.id).style.top);
-            var dumbBotLeft = removePxParseInt(document.querySelector("#"+dumbBot.id).style.left);
+        var dumbBotTop = removePxParseInt(document.querySelector("#"+dumbBot.id).style.top);
+        var dumbBotLeft = removePxParseInt(document.querySelector("#"+dumbBot.id).style.left);
 
-            if((verifTop === dumbBotTop) && (verifLeft === dumbBotLeft)) {
-                moveOk = false;
-            }
+        if((verifTop === dumbBotTop) && (verifLeft === dumbBotLeft)) {
+            moveOk = false;
+        }
     });
 
     //manage target reach
@@ -125,25 +125,32 @@ Person.prototype.move = function(direction, distance) {
     if(targetReach){
         //pause game
         togglePlay();
-        //if currentLevel is last level
-        if (area.currentLevel === levelElements.length-1){
-            //save win info to localStorage
-            localStorage.setItem("win", JSON.stringify("win"));
-            alert("Well done !\n You won this game !");
-            window.location.reload();
+        if(editionMode){
+            alert("target Reached !");
         }
-        //else
         else {
-            //ask for loading next level
-            var r = confirm("Well done !\n Try next level !");
-            //if ok
-            if (r === true) {
-                //increase currentLevel
-                area.currentLevel ++;
-                //save it to LocalStorage
-                saveLevelToStorage(area.currentLevel);
-                //load level
-                area.loadLevel(area.currentLevel);
+            //if currentLevel is last level
+            if (area.currentLevel === levelElements.length-1){
+                //save win info to localStorage
+                localStorage.setItem("win", JSON.stringify("win"));
+                alert("Well done !\n You won this game !");
+                window.location.reload();
+            }
+            //else
+            else {
+                //ask for loading next level
+                var r = confirm("Well done !\n Try next level !");
+                //if ok
+                if (r === true) {
+                    //increase currentLevel
+                    area.currentLevel ++;
+                    //save it to LocalStorage
+                    saveLevelToStorage(area.currentLevel);
+                    //load level
+                    area.loadLevel(area.currentLevel);
+                } else {
+                    togglePlay();
+                }
             }
         }
     }

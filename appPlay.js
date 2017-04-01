@@ -1,6 +1,8 @@
 //CREATE ARENA
 var area = new Grid("area", areaCols, areaRows);
 
+//edition mode
+var editionMode = false;
 
 //PLAY
 //init play button
