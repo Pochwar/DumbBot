@@ -20,18 +20,17 @@ Grid.prototype.init = function () {
     //Edition mode
     if(editionMode){
         //check is a level is save in localStorage
-        levelData = getFromStorage("levelData")
+        this.levelData = getFromStorage("levelData")
         //if not, load level 0
-        if (levelData.length === 0){
+        if (this.levelData.length === 0){
             this.loadLevel(0);
             this.saveLevelDataToStorage();
         }
         //if yes, load storage level
         else {
-            levelElements.push(levelData);
+            levelElements.push(this.levelData);
             this.loadLevel(levelElements.length-1);
         }
-        this.verifElements();
     }
     //Play mode
     else {
@@ -55,6 +54,31 @@ Grid.prototype.init = function () {
 };
 
 
+//Display level list
+Grid.prototype.listLevels = function (parent) {
+    //load level data
+    var select = document.createElement('select');
+    levelElements.forEach(function(level, i){
+        if(editionMode && this.levelData.length !== 0){
+            var levelMax = levelElements.length-1
+        } else {
+            var levelMax = levelElements.length
+        }
+        if (i !== levelMax){
+            //generate html links
+            var option = document.createElement('option');
+            option.innerText = "Level " + i;
+            option.value = "lvl" + i;
+            //eventlistener
+            option.addEventListener("click", function(){
+                area.loadLevel(i)
+            });
+            select.appendChild(option);
+        }
+    }.bind(this));
+    document.querySelector("#"+parent).appendChild(select);
+};
+
 
 //Construct level into Grid
 Grid.prototype.loadLevel = function (levelId) {
@@ -63,6 +87,10 @@ Grid.prototype.loadLevel = function (levelId) {
     //load new level data into items[]
     this.levelLoaded = new Level(levelId, this.grid);
 
+    //verif element in edition mode
+    if(editionMode){
+        this.verifElements();
+    }
 
     //display current level
     document.querySelector('#levelNumber').innerText = "= Level " + levelId + " =";
@@ -355,6 +383,6 @@ Grid.prototype.saveLevelDataToStorage = function () {
         // levelData.push({class:+element.className+,id:+element.id+,top:+top+,left:+left+})
         var item = {class:element.className,id:element.id,top:top,left:left}
         levelData.push(item)
-        localStorage.setItem('levelData', JSON.stringify(levelData))
     })
+    localStorage.setItem('levelData', JSON.stringify(levelData))
 };

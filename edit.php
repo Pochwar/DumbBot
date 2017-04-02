@@ -12,25 +12,27 @@
     <div class="infos">
         <div id="editor">
             <p class="bold">Construct Elements</p>
-            <p>LeftClick : walls</p>
-            <p>LeftClick+Ctrl : Players</p>
-            <p>LeftClick+Alt : DumbBots</p>
-            <p>LeftClick+Ctrl+Alt : Targets</p>
+            <p>Click : walls</p>
+            <p>Ctrl+Click : Players <span id="maxPlayer" class="max"></span></p>
+            <p>Alt+Click : DumbBots <span id="maxdumbBot" class="max"></span></p>
+            <p>Ctrl+Alt+Click : Targets <span id="maxTarget" class="max"></span></p>
             <br/>
             <p class="bold">Move Elements</p>
-            <p>RightClick to select, RightClick again to move</p>
+            <p>Right-Click to select, Right-Click again to move</p>
             <br/>
             <p class="bold">Delete Elements</p>
-            <p>LeftClick + shift</p>
+            <p>Shift+Click</p>
             <br/>
             <p><a id="clear">Clear level</a></p>
             <p><a id="save">Get level data</a></p>
             <div id="copyTricks"></div>
-            <hr>
+            <br>
             <p>Load a level to edit</p>
             <div id="levels"></div>
-            <hr>
+            <br>
+            <button onclick="window.location.href='index.php'">Back to game</button>
             <div id="errors"></div>
+
         </div>
 
     </div>

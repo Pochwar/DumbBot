@@ -38,5 +38,5 @@ document.querySelector('#play').style.left = btnPlayLeft;
 document.querySelector('#wingame').style.visibility = "hidden";
 if (getFromStorage("win") === "win"){
     document.querySelector('#wingame').style.visibility = "visible";
-    listLevels();
+    area.listLevels("levels");
 }

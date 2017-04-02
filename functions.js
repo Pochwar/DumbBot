@@ -26,9 +26,9 @@ function getFromStorage(item) {
 
 //save current level to localStorage
 function saveLevelNumberToStorage(number){
-        var item = [{levelNumber : number}];
+    var item = [{levelNumber : number}];
 
-        localStorage.setItem("level", JSON.stringify(item));
+    localStorage.setItem("level", JSON.stringify(item));
 }
 
 //Clear localStorage item
@@ -36,24 +36,6 @@ function clearStorage(item) {
     localStorage.removeItem(item);
 }
 
-
-//Display level list
-function listLevels() {
-    //load level data
-    levelElements.forEach(function(level, i){
-        //generate html links
-        var a = document.createElement('a');
-        a.innerText = "Level " + i;
-        a.id = "lvl" + i;
-        var p = document.createElement('p');
-        p.appendChild(a);
-        document.querySelector("#levels").appendChild(p);
-        //application du eventlistener
-        document.querySelector("#lvl" + i).addEventListener("click", function(){
-            area.loadLevel(i)
-        });
-    });
-};
 
 //Récupérer les coordonnées de la souris
 function getMouseCoord(event){

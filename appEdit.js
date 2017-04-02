@@ -32,7 +32,12 @@ function togglePlay(){
 }
 
 //list levels to load
-listLevels();
+area.listLevels("levels");
+
+//infogame
+document.querySelector('#maxPlayer').innerHTML = "(max : " + nbPlayerMax + ")";
+document.querySelector('#maxdumbBot').innerHTML = "(max : " + nbDumbBotMax + ")";
+document.querySelector('#maxTarget').innerHTML = "(max : " + nbTargetMax + ")";
 
 //clear level
 document.querySelector('#clear').addEventListener("click", function(){
