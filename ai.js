@@ -5,7 +5,7 @@ var goRight = {};
 
 //move dumbBot
 function moveDumbBot(){
-
+    //algo to make dumbot move right everytime it meets a wall or a player
     dumbBot.forEach(function(dumbBot){
         //set "go" directions for each dumbbot
         if(goTop[dumbBot.id] === undefined){
@@ -21,7 +21,6 @@ function moveDumbBot(){
             goRight[dumbBot.id] = true
         }
 
-        // console.log(dumbBot.move("bottom"))
         if(goRight[dumbBot.id]){
             if(!dumbBot.move("right")){
                 goRight[dumbBot.id] = false;
