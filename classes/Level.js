@@ -2,12 +2,6 @@ function Level(id, parent){
     init(id, parent);
 
 
-    //Construct level into Grid
-    this.test = function() {
-        // unload previous level
-        console.log("coucouille")
-    };
-
     //init level
     function init(id, parent) {
 
@@ -52,7 +46,7 @@ function Level(id, parent){
             break;
 
             default:
-            console.log("ERROR");
+            console.log("ERROR ! className => " + className);
         }
     }
 

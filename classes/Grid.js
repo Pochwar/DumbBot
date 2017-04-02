@@ -17,20 +17,39 @@ Grid.prototype.init = function () {
     this.grid.style.height = this.height;
 
     //LOAD LEVEL
-    //Set localStorage level to level[]
-    var level = getFromStorage("level");
-    //if level[] is empty
-    if (level.length === 0){
-        //load level 0 and affect 0 to currentLevel
-        this.currentLevel = this.loadLevel(0);
-        //save currentLevel to localStorage
-        saveLevelToStorage(currentLevel);
-        level = getFromStorage("level")
+    //Edition mode
+    if(editionMode){
+        //check is a level is save in localStorage
+        levelData = getFromStorage("levelData")
+        //if not, load level 0
+        if (levelData.length === 0){
+            this.loadLevel(0);
+            this.saveLevelDataToStorage();
+        }
+        //if yes, load storage level
+        else {
+            levelElements.push(levelData);
+            this.loadLevel(levelElements.length-1);
+        }
+        this.verifElements();
     }
-    //else
+    //Play mode
     else {
-        //load last played level and affect it to currentLevel
-        this.currentLevel = this.loadLevel(level[0].levelNumber);
+        //Set localStorage level to level[]
+        var level = getFromStorage("level");
+        //if level[] is empty
+        if (level.length === 0){
+            //load level 0 and affect 0 to currentLevel
+            this.currentLevel = this.loadLevel(0);
+            //save currentLevel to localStorage
+            saveLevelNumberToStorage(this.currentLevel);
+            level = getFromStorage("level")
+        }
+        //else
+        else {
+            //load last played level and affect it to currentLevel
+            this.currentLevel = this.loadLevel(level[0].levelNumber);
+        }
     }
 
 };
@@ -39,6 +58,19 @@ Grid.prototype.init = function () {
 
 //Construct level into Grid
 Grid.prototype.loadLevel = function (levelId) {
+    //clear previous level previous level
+    this.clearLevel();
+    //load new level data into items[]
+    this.levelLoaded = new Level(levelId, this.grid);
+
+
+    //display current level
+    document.querySelector('#levelNumber').innerText = "= Level " + levelId + " =";
+    return levelId;
+};
+
+//Clear level
+Grid.prototype.clearLevel = function () {
     // unload previous level
     var childs = document.querySelectorAll("[type='element']");
     childs.forEach(function(child){
@@ -48,13 +80,6 @@ Grid.prototype.loadLevel = function (levelId) {
     player = [];
     dumbBot = [];
     target = [];
-    //load new level data into items[]
-    this.levelLoaded = new Level(levelId, this.grid);
-
-
-    //display current level
-    document.querySelector('#levelNumber').innerText = "= Level " + levelId + " =";
-    return levelId;
 };
 
 
@@ -116,6 +141,7 @@ Grid.prototype.actionRouter = function(event){
     }
 
     this.verifElements();
+    this.saveLevelDataToStorage();
 }
 
 //verif elements presence
@@ -314,19 +340,21 @@ Grid.prototype.deleteElement = function(event, x, y){
             default:
 
         }
-        // var wallToDelete = document.getElementById(id);
         this.grid.removeChild(elementToDelete);
-        // walls.splice(wallObjectByTopLeft(y, x),1);
-        // localStorage.setItem('walls', JSON.stringify(walls));
     }
 }
 
 
-//Save Level to localStorage
-Grid.prototype.saveLevel = function () {
-    // var wallItem = {type : "wall", id : i, top : y, left : x};
-    // //Enregistrement dans le localStorage
-    // walls.push(wallItem);
-    // localStorage.setItem('walls', JSON.stringify(walls));
-    //Création dans l'area
+//Save Level data to localStorage
+Grid.prototype.saveLevelDataToStorage = function () {
+    var levelData = [];
+    var elements = document.querySelectorAll("[type='element']");
+    elements.forEach(function(element){
+        var top = removePxParseInt(element.style.top)/elementSize;
+        var left = removePxParseInt(element.style.left)/elementSize;
+        // levelData.push({class:+element.className+,id:+element.id+,top:+top+,left:+left+})
+        var item = {class:element.className,id:element.id,top:top,left:left}
+        levelData.push(item)
+        localStorage.setItem('levelData', JSON.stringify(levelData))
+    })
 };

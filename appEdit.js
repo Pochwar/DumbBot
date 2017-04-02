@@ -1,8 +1,8 @@
-//CREATE ARENA
-var area = new Grid("area", areaCols, areaRows);
-
 //edition mode
 var editionMode = true;
+
+//CREATE ARENA
+var area = new Grid("area", areaCols, areaRows);
 
 //PLAY
 //init play button
@@ -35,7 +35,10 @@ function togglePlay(){
 listLevels();
 
 //clear level
-document.querySelector('#clear').addEventListener("click", clearLevel);
+document.querySelector('#clear').addEventListener("click", function(){
+     area.clearLevel();
+     area.verifElements()
+});
 
 //get level data
 document.querySelector('#save').addEventListener("click", area.getLevelData);

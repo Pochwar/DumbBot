@@ -25,7 +25,7 @@ function getFromStorage(item) {
 }
 
 //save current level to localStorage
-function saveLevelToStorage(number){
+function saveLevelNumberToStorage(number){
         var item = [{levelNumber : number}];
 
         localStorage.setItem("level", JSON.stringify(item));
@@ -67,18 +67,4 @@ function getMouseCoord(event){
     y = (Math.floor(y/elementSize));
     var mouse = [x,y];
     return mouse;
-}
-
-
-//clear level
-function clearLevel(){
-    var childs = document.querySelectorAll("[type='element']");
-    childs.forEach(function(child){
-        area.grid.removeChild(child);
-    });
-    wall = [];
-    player = [];
-    dumbBot = [];
-    target = [];
-    area.verifElements();
 }

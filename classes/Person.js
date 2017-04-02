@@ -145,7 +145,7 @@ Person.prototype.move = function(direction, distance) {
                     //increase currentLevel
                     area.currentLevel ++;
                     //save it to LocalStorage
-                    saveLevelToStorage(area.currentLevel);
+                    saveLevelNumberToStorage(area.currentLevel);
                     //load level
                     area.loadLevel(area.currentLevel);
                 } else {
