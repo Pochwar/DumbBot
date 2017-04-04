@@ -19,7 +19,7 @@ function togglePlay(){
     if (!play){
         play = true;
         edit = false;
-        interval = setInterval(moveDumbBot,100);
+        interval = setInterval(moveDumbBot,speed);
 
         document.querySelector('#pause').innerText = "Pause";
     } else {

@@ -5,6 +5,9 @@ var elementSize = 15;
 var areaCols = 50;
 var areaRows = 30;
 
+//speed
+var speed = 100;
+
 //play button width & height
 var btnPlayWidth = document.querySelector('#play').style.width = "152px";
 var btnPlayHeight = document.querySelector('#play').style.height = "62px";

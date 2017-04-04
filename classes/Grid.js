@@ -171,7 +171,7 @@ Grid.prototype.actionRouter = function(event){
     //RIGHT CLICK
     if (event.which===3) {
         //move element
-        this.move(event, x, y);
+        this.moveItem(event, x, y);
     }
 
     this.verifElements();
@@ -202,7 +202,7 @@ Grid.prototype.verifElements = function(){
 }
 
 //move elements
-Grid.prototype.move = function(event, x, y){
+Grid.prototype.moveItem = function(event, x, y){
     if(this.elementToMove.length === 0){
         var elements = document.querySelectorAll("[type='element']");
         elements.forEach(function(element){

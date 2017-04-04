@@ -3,13 +3,13 @@ var goBottom = {};
 var goLeft = {};
 var goRight = {};
 var randDur = {};
-
+var distanceMax = 10;
 
 //move dumbBot
 function moveDumbBot(){
     //algo to make dumbot move randomly
 
-    dumbBot.forEach(function(dumbBot){
+    items.dumbBot.forEach(function(dumbBot){
         //set "go" directions for each dumbbot
         if(goTop[dumbBot.id] === undefined){
             goTop[dumbBot.id] = false
@@ -25,29 +25,24 @@ function moveDumbBot(){
         }
         //if no dir & no dur set
         if (!goTop[dumbBot.id] && !goBottom[dumbBot.id] && !goLeft[dumbBot.id] && !goRight[dumbBot.id]){
-            console.log("test1");
             //set rand direction & duration
             var randDir = Math.floor( Math.random()*4);
 
             switch (randDir) {
                 case 0:
                 goTop[dumbBot.id] = true
-                console.log("top");
                 break;
 
                 case 1:
                 goBottom[dumbBot.id] = true
-                console.log("bottom");
                 break;
 
                 case 2:
                 goLeft[dumbBot.id] = true
-                console.log("left");
                 break;
 
                 case 3:
                 goRight[dumbBot.id] = true
-                console.log("right");
                 break;
 
                 default:

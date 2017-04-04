@@ -22,25 +22,37 @@ function moveDumbBot(){
         }
 
         if(goRight[dumbBot.id]){
-            if(!dumbBot.move("right")){
+            var prepareGo = dumbBot.moveVerification("right");
+            if (prepareGo.move){
+                dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply);
+            } else {
                 goRight[dumbBot.id] = false;
             }
         } else {
             if(goBottom[dumbBot.id]){
-                if(!dumbBot.move("bottom")){
+                var prepareGo = dumbBot.moveVerification("bottom");
+                if (prepareGo.move){
+                    dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply);
+                } else {
                     goBottom[dumbBot.id] = false;
                 }
             } else {
                 if(goLeft[dumbBot.id]){
-                    if(!dumbBot.move("left")){
+                    var prepareGo = dumbBot.moveVerification("left");
+                    if (prepareGo.move){
+                        dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply);
+                    } else {
                         goLeft[dumbBot.id] = false;
                     }
                 } else {
                     if(goTop[dumbBot.id]){
-                        if(!dumbBot.move("top")){
+                        var prepareGo = dumbBot.moveVerification("top");
+                        if (prepareGo.move){
+                            dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply);
+                        } else {
                             goRight[dumbBot.id] = true;
-                            goBottom[dumbBot.id] = true;
                             goLeft[dumbBot.id] = true;
+                            goBottom[dumbBot.id] = true;
                         }
                     }
                 }

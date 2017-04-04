@@ -10,6 +10,13 @@ Person.prototype.constructItem = function () {
 
 
 Person.prototype.move = function(direction, distance) {
+    var prepareGo = this.moveVerification(direction, distance);
+    if (prepareGo.move){
+        this.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply);
+    }
+}
+
+Person.prototype.moveVerification = function(direction, distance) {
     var id = this.id;
     var distance = distance || elementSize;
     //set moveOk to true (useful for bot move)
@@ -133,7 +140,14 @@ Person.prototype.move = function(direction, distance) {
     //if moveOK remains true, apply movement
     if (moveOk){
         coordToApply = coordToApply + "px";
-        document.querySelector('#' + id).style[property] = coordToApply;
+        var prepareGo = {
+            move : true,
+            coordToApply : coordToApply,
+            property : property,
+            id : id
+        };
+    } else {
+        var prepareGo = {move : false};
     }
 
     //if target is reached
@@ -171,5 +185,9 @@ Person.prototype.move = function(direction, distance) {
     }
 
 
-    return moveOk;
+    return prepareGo;
 };
+
+Person.prototype.go = function(id, property, coordToApply) {
+    document.querySelector('#' + id).style[property] = coordToApply;
+}

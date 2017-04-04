@@ -15,7 +15,7 @@ document.querySelector('#pause').style.visibility = "hidden";
 function togglePlay(){
     if (!play){
         play = true;
-        interval = setInterval(moveDumbBot,100);
+        interval = setInterval(moveDumbBot,speed);
         document.querySelector('#play').style.visibility = "hidden";
         document.querySelector('#pause').style.visibility = "visible";
     } else {
