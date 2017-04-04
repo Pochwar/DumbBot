@@ -63,7 +63,7 @@ Person.prototype.move = function(direction, distance) {
         }
     }
 
-    //prevent move if wall detected
+    //get coords for collisions
     if (property === "top"){
         var verifTop = coordToApply;
         var verifLeft = parseInt(left.replace("px", ""));
@@ -72,18 +72,33 @@ Person.prototype.move = function(direction, distance) {
         var verifTop = parseInt(top.replace("px", ""));
         var verifLeft = coordToApply;
     }
-    var walls = document.querySelectorAll(".wall");
-    walls.forEach(function(wall){
-        var wallTop = removePxParseInt(wall.style.top);
-        var wallLeft = removePxParseInt(wall.style.left);
+
+    //prevent move if wall detected
+    items.wall.forEach(function(wall){
+        var wallTop = removePxParseInt(document.querySelector("#"+wall.id).style.top);
+        var wallLeft = removePxParseInt(document.querySelector("#"+wall.id).style.left);
         if (verifTop === wallTop && verifLeft === wallLeft){
             moveOk = false;
         }
     });
 
+    //prevent move for player if fakewall detected
+    items.player.forEach(function(player){
+        if(id === player.id){
+            items.fakewall.forEach(function(fakewall){
+                var fakewallTop = parseInt(fakewall.top);
+                var fakewallLeft = parseInt(fakewall.left);
+                if (verifTop === fakewallTop && verifLeft === fakewallLeft){
+                    moveOk = false;
+                }
+            });
+        }
+    });
+
+
     //manage collision between dumbBots and players
     //prevent dumbBot move if player
-    player.forEach(function(player){
+    items.player.forEach(function(player){
         // if(id !== player.id){
         var playerTop = removePxParseInt(document.querySelector("#"+player.id).style.top);
         var playerLeft = removePxParseInt(document.querySelector("#"+player.id).style.left);
@@ -94,7 +109,7 @@ Person.prototype.move = function(direction, distance) {
         // }
     });
     //prevent player move if dumbBot
-    dumbBot.forEach(function(dumbBot){
+    items.dumbBot.forEach(function(dumbBot){
         var dumbBotTop = removePxParseInt(document.querySelector("#"+dumbBot.id).style.top);
         var dumbBotLeft = removePxParseInt(document.querySelector("#"+dumbBot.id).style.left);
 
@@ -104,9 +119,9 @@ Person.prototype.move = function(direction, distance) {
     });
 
     //manage target reach
-    dumbBot.forEach(function(dumbBot){
+    items.dumbBot.forEach(function(dumbBot){
         if(id === dumbBot.id){
-            target.forEach(function(target){
+            items.target.forEach(function(target){
                 if((verifTop === target.top) && (verifLeft === target.left)) {
                     targetReach = true;
                     return;

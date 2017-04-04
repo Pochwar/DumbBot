@@ -9,16 +9,66 @@ var areaRows = 30;
 var btnPlayWidth = document.querySelector('#play').style.width = "152px";
 var btnPlayHeight = document.querySelector('#play').style.height = "62px";
 
-//array of items
-var wall = [];
-var player = [];
-var dumbBot = [];
-var target = [];
+//items arrays
+var items ={
+    wall : [],
+    fakewall : [],
+    player : [],
+    dumbBot : [],
+    target : []
+}
 
 //max item
 var nbPlayerMax = 2;
 var nbDumbBotMax = 4;
 var nbTargetMax = 4;
+
+//switch function
+function switchItem(item){
+    switch (item) {
+        case "player":
+        var array = items.player;
+        var object = Player;
+        var maxItem = nbPlayerMax;
+        break;
+
+        case "dumbbot":
+        var array = items.dumbBot;
+        var object = DumbBot;
+        var maxItem = nbDumbBotMax;
+        break;
+
+        case "target":
+        var array = items.target;
+        var object = Target;
+        var maxItem = nbTargetMax;
+        break;
+
+        case "wall":
+        var array = items.wall;
+        var object = Wall;
+        var maxItem = Infinity;
+        break;
+
+        case "fakewall":
+        var array = items.fakewall;
+        var object = FakeWall;
+        var maxItem = Infinity;
+        break;
+
+        default:
+    }
+    var switchReturn = {
+        array : array,
+        object : object,
+        maxItem : maxItem
+    };
+    return switchReturn;
+}
+
+
+
+
 
 //players controls
 var map = {}; // You could also use an array
@@ -28,35 +78,14 @@ onkeydown = onkeyup = function(e){
     //controls available if play is true
     if(play){
         // player 0
-        if(map[38]) {player[0].move("top");}
-        if(map[40]) {player[0].move("bottom");}
-        if(map[37]) {player[0].move("left");}
-        if(map[39]) {player[0].move("right");}
+        if(map[38]) {items.player[0].move("top");}
+        if(map[37]) {items.player[0].move("left");}
+        if(map[40]) {items.player[0].move("bottom");}
+        if(map[39]) {items.player[0].move("right");}
         // player 1
-        if(map[90]) {player[1].move("top");}
-        if(map[83]) {player[1].move("bottom");}
-        if(map[81]) {player[1].move("left");}
-        if(map[68]) {player[1].move("right");}
+        if(map[90]) {items.player[1].move("top");}
+        if(map[83]) {items.player[1].move("bottom");}
+        if(map[81]) {items.player[1].move("left");}
+        if(map[68]) {items.player[1].move("right");}
     }
 }
-
-//OLD VERSION
-//define player0 controls
-// function movePlayer(e, i, dir) {
-//     //top
-//     if (e.keyCode == up) {player[i].move("top");}
-//     //bottom
-//     if (e.keyCode == down) {player[i].move("bottom");}
-//     //left
-//     if (e.keyCode == left) {player[i].move("left");}
-//     //right
-//     if (e.keyCode == right) {player[i].move("right");}
-// }
-// init movePlayer0()
-// document.querySelector('body').addEventListener("keydown", function(event){
-//     if (!event){
-//         event = window.event;
-//     }
-//     movePlayer(event, 0, 38, 40, 37, 39);
-//     movePlayer(event, 1, 90, 83, 81, 68);
-// });

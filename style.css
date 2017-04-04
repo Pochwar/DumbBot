@@ -162,6 +162,11 @@ section {
     background-color: #3d2701;
 }
 
+.fakewall{
+    position:absolute;
+    background-color: rgba(61, 39, 1, 0.8);
+}
+
 .infos{
     position : absolute;
     top : 10px;

@@ -50,7 +50,6 @@ Grid.prototype.init = function () {
             this.currentLevel = this.loadLevel(level[0].levelNumber);
         }
     }
-
 };
 
 
@@ -104,10 +103,10 @@ Grid.prototype.clearLevel = function () {
     childs.forEach(function(child){
         this.grid.removeChild(child);
     }.bind(this));
-    wall = [];
-    player = [];
-    dumbBot = [];
-    target = [];
+    //clear every items array
+    Object.keys(items).map(function(itemArray, index) {
+        items[itemArray] = []
+    });
 };
 
 
@@ -140,9 +139,16 @@ Grid.prototype.actionRouter = function(event){
 
     //LEFT CLICK
     if (event.which===1) {
-        //delete element
+
         if (event.shiftKey){
-            this.deleteElement(event, x, y)
+            if (!event.altKey && !event.ctrlKey){
+                //delete element
+                this.deleteElement(event, x, y);
+            }
+            if (!event.altKey && event.ctrlKey){
+                //construct fakewall
+                this.construct(event, "fakewall", x, y);
+            }
         }
         //construct element
         else{
@@ -154,7 +160,7 @@ Grid.prototype.actionRouter = function(event){
                 }
             } else {
                 if (event.altKey){
-                    this.construct(event, "dumbBot", x, y);
+                    this.construct(event, "dumbbot", x, y);
                 } else {
                     this.construct(event, "wall", x, y);
                 }
@@ -175,13 +181,13 @@ Grid.prototype.actionRouter = function(event){
 //verif elements presence
 Grid.prototype.verifElements = function(){
     var errorMsg = "";
-    if(player.length === 0){
+    if(items.player.length === 0){
         errorMsg += "<p class='error'>Set at least 1 player !!</p>";
     }
-    if(dumbBot.length === 0){
+    if(items.dumbBot.length === 0){
         errorMsg += "<p class='error'>Set at least 1 dumbBot !!</p>";
     }
-    if(target.length === 0){
+    if(items.target.length === 0){
         errorMsg += "<p class='error'>Set at least 1 target !!</p>";
     }
     if (errorMsg !== ""){
@@ -222,67 +228,18 @@ Grid.prototype.move = function(event, x, y){
 //coonstruct elements
 Grid.prototype.construct = function(event, element, x, y){
     if(edit){
-        switch (element) {
-            case "wall" :
-            var i = wall.length;
-            if(i === 0){
-                index = 0;
-            } else {
-                var lastIndex = i-1;
-                var index = parseInt(wall[lastIndex].id.replace("wall", ""))+1;
-            }
-            if(!this.checkB4Construct(y, x)){
-                wall.push(new Wall(this.grid, "wall"+index, y, x));
-                wall[i].constructItem();
-            }
-            break;
-
-            case "player" :
-            var i =  player.length;
-            if(i === 0){
-                index = 0;
-            } else {
-                var lastIndex = i-1;
-                var index = parseInt(player[lastIndex].id.replace("player", ""))+1;
-            }
-            if(!this.checkB4Construct(y, x) && i < nbPlayerMax){
-                player.push(new Player(this.grid, "player"+index, y, x));
-                player[i].constructItem();
-            }
-            break;
-
-            case "dumbBot" :
-            var i =  dumbBot.length;
-            if(i === 0){
-                index = 0;
-            } else {
-                var lastIndex = i-1;
-                var index = parseInt(dumbBot[lastIndex].id.replace("dumbbot", ""))+1;
-            }
-            if(!this.checkB4Construct(y, x) && i < nbDumbBotMax){
-                dumbBot.push(new DumbBot(this.grid, "dumbbot"+index, y, x));
-                dumbBot[i].constructItem();
-            }
-            break;
-
-            case "target" :
-            var i =  target.length;
-            if(i === 0){
-                index = 0;
-            } else {
-                var lastIndex = i-1;
-                var index = parseInt(target[lastIndex].id.replace("dumbbot", ""))+1;
-            }
-            if(!this.checkB4Construct(y, x) && i < nbTargetMax){
-                target.push(new Target(this.grid, "target"+index, y, x));
-                target[i].constructItem();
-            }
-            break;
-
-            default:
-
+        var switchReturn = switchItem(element);
+        var i = switchReturn.array.length;
+        if(i === 0){
+            index = 0;
+        } else {
+            var lastIndex = i-1;
+            var index = parseInt(switchReturn.array[lastIndex].id.replace(element, ""))+1;
         }
-
+        if(!this.checkB4Construct(y, x) && i < switchReturn.maxItem){
+            switchReturn.array.push(new switchReturn.object(this.grid, element+index, y, x));
+            switchReturn.array[i].constructItem();
+        }
     }
 }
 
@@ -324,50 +281,16 @@ Grid.prototype.deleteElement = function(event, x, y){
         // var parent = document.querySelector('.area');
         var elementToDelete = this.elementByTopLeft(y, x);
         var type = elementToDelete.className;
-        switch (type) {
-            case "player":
-            var indexToDelete
-            player.forEach(function(player, i){
-                if(player.id === elementToDelete.id){
-                    indexToDelete = i;
-                }
-            })
-            player.splice(indexToDelete, 1)
-            break;
-
-            case "wall":
-            var indexToDelete
-            wall.forEach(function(wall, i){
-                if(wall.id === elementToDelete.id){
-                    indexToDelete = i;
-                }
-            })
-            wall.splice(indexToDelete, 1)
-            break;
-
-            case "dumbbot":
-            var indexToDelete
-            dumbBot.forEach(function(dumbBot, i){
-                if(dumbBot.id === elementToDelete.id){
-                    indexToDelete = i;
-                }
-            })
-            dumbBot.splice(indexToDelete, 1)
-            break;
-
-            case "target":
-            var indexToDelete
-            target.forEach(function(target, i){
-                if(target.id === elementToDelete.id){
-                    indexToDelete = i;
-                }
-            })
-            target.splice(indexToDelete, 1)
-            break;
-
-            default:
-
-        }
+        //delete item form its array
+        var switchReturn = switchItem(type)
+        var indexToDelete
+        switchReturn.array.forEach(function(item, i){
+            if(item.id === elementToDelete.id){
+                indexToDelete = i;
+            }
+        })
+        switchReturn.array.splice(indexToDelete, 1)
+        //remove item from grid
         this.grid.removeChild(elementToDelete);
     }
 }
