@@ -24,7 +24,7 @@ function moveDumbBot(){
         if(goRight[dumbBot.id]){
             var prepareGo = dumbBot.moveVerification("right");
             if (prepareGo.move){
-                dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply);
+                dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply, prepareGo.targetReach);
             } else {
                 goRight[dumbBot.id] = false;
             }
@@ -32,7 +32,7 @@ function moveDumbBot(){
             if(goBottom[dumbBot.id]){
                 var prepareGo = dumbBot.moveVerification("bottom");
                 if (prepareGo.move){
-                    dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply);
+                    dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply, prepareGo.targetReach);
                 } else {
                     goBottom[dumbBot.id] = false;
                 }
@@ -40,7 +40,7 @@ function moveDumbBot(){
                 if(goLeft[dumbBot.id]){
                     var prepareGo = dumbBot.moveVerification("left");
                     if (prepareGo.move){
-                        dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply);
+                        dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply, prepareGo.targetReach);
                     } else {
                         goLeft[dumbBot.id] = false;
                     }
@@ -48,7 +48,7 @@ function moveDumbBot(){
                     if(goTop[dumbBot.id]){
                         var prepareGo = dumbBot.moveVerification("top");
                         if (prepareGo.move){
-                            dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply);
+                            dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply, prepareGo.targetReach);
                         } else {
                             goRight[dumbBot.id] = true;
                             goLeft[dumbBot.id] = true;

@@ -12,7 +12,7 @@ Person.prototype.constructItem = function () {
 Person.prototype.move = function(direction, distance) {
     var prepareGo = this.moveVerification(direction, distance);
     if (prepareGo.move){
-        this.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply);
+        this.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply, prepareGo.targetReach);
     }
 }
 
@@ -144,12 +144,18 @@ Person.prototype.moveVerification = function(direction, distance) {
             move : true,
             coordToApply : coordToApply,
             property : property,
-            id : id
+            id : id,
+            targetReach : targetReach
         };
     } else {
         var prepareGo = {move : false};
     }
 
+    return prepareGo;
+};
+
+Person.prototype.go = function(id, property, coordToApply, targetReach) {
+    document.querySelector('#' + id).style[property] = coordToApply;
     //if target is reached
     if(targetReach){
         //pause game
@@ -183,11 +189,4 @@ Person.prototype.moveVerification = function(direction, distance) {
             }
         }
     }
-
-
-    return prepareGo;
-};
-
-Person.prototype.go = function(id, property, coordToApply) {
-    document.querySelector('#' + id).style[property] = coordToApply;
 }
