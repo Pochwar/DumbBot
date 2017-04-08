@@ -50,17 +50,32 @@ function moveDumbBot(){
             default:
 
         }
-
+        console.log("forward : " + forward);
         if(go[forward][dumbBot.id]){
-            var prepareGo = dumbBot.moveVerification(forward);
-            if (prepareGo.move){
-                dumbBot.go(prepareGo.id, prepareGo.property, prepareGo.coordToApply, prepareGo.targetReach);
-            } else {
+            //check if there is a path @ right
+            var pathRight = dumbBot.moveVerification(right);
+            //if yes
+            if (pathRight.move){
+                console.log("path right");
+                //turn right
                 go[forward][dumbBot.id] = false;
                 go[right][dumbBot.id] = true;
+                //go
+                dumbBot.go(pathRight.id, pathRight.property, pathRight.coordToApply, pathRight.targetReach);
+            } else {
+                console.log("no path right");
+                //check if there is a path forward
+                var pathForward = dumbBot.moveVerification(forward);
+                //if yes
+                if (pathForward.move){
+                    //go
+                    dumbBot.go(pathForward.id, pathForward.property, pathForward.coordToApply, pathForward.targetReach);
+                } else {
+                    //turn left
+                    go[forward][dumbBot.id] = false;
+                    go[left][dumbBot.id] = true;
+                }
             }
         }
-
-    });
-
-}
+    }
+)}

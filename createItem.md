@@ -9,6 +9,3 @@
 #5 add style in style.css
 
 #6 add rules !!
-
-#TODO
-edit mode construction
