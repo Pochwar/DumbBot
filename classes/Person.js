@@ -156,6 +156,9 @@ Person.prototype.moveVerification = function(direction, distance) {
 
 Person.prototype.go = function(id, property, coordToApply, targetReach) {
     document.querySelector('#' + id).style[property] = coordToApply;
+    var newCoords = {};
+    newCoords["top"] = document.querySelector('#' + id).style.top;
+    newCoords["left"] = document.querySelector('#' + id).style.left;
     //if target is reached
     if(targetReach){
         //pause game
@@ -189,4 +192,5 @@ Person.prototype.go = function(id, property, coordToApply, targetReach) {
             }
         }
     }
+    return newCoords;
 }

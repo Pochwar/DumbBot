@@ -25,6 +25,8 @@ var items ={
 var nbPlayerMax = 2;
 var nbDumbBotMax = 4;
 var nbTargetMax = 4;
+var nbWallMax = Infinity;
+var nbFakeWalltMax = Infinity;
 
 //switch function
 function switchItem(item){
@@ -50,13 +52,13 @@ function switchItem(item){
         case "wall":
         var array = items.wall;
         var object = Wall;
-        var maxItem = Infinity;
+        var maxItem = nbWallMax;
         break;
 
         case "fakewall":
         var array = items.fakewall;
         var object = FakeWall;
-        var maxItem = Infinity;
+        var maxItem = nbFakeWalltMax;
         break;
 
         default:
