@@ -120,11 +120,11 @@ Grid.prototype.getLevelData = function () {
         var coma = i === elements.length-1 ? '' : ',';
         textElements += '{class:"'+elements[i].className+'",id:"'+elements[i].id+'",top:'+top+',left:'+left+'}' + coma;
     }
-    textElements += '\n];';
+    textElements += '\n],';
     //trick pour copier le texte dans le presse papier
     //créer un textarea rendu invisible en css dans lequel n met le texte que l'on copie
     var tricks = document.createElement('textarea');
-    tricks.value = "levelElements[X] = \n" + textElements;
+    tricks.value = textElements;
     document.querySelector("#copyTricks").appendChild(tricks);
     tricks.select();
     document.execCommand('copy');
